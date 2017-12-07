@@ -36,7 +36,7 @@ public class Projet_11_ADHER extends Application {
         
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Hello World This is meeeee!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
