@@ -12,31 +12,24 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.*;
+import javafx.fxml.*;
+import javafx.*;
 
 /**
  * fd
+ *
  * @author jmddu
  */
 public class Projet_11_ADHER extends Application {
-    
+
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Salut Michel'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("COUCOU C'EST MOI LE MICHEL !!!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World This is meeeee!");
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
+
+        Scene scene = new Scene(root, 1200, 800);
+
+        primaryStage.setTitle("ADHER system");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -47,5 +40,5 @@ public class Projet_11_ADHER extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
