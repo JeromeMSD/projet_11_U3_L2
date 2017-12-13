@@ -29,7 +29,7 @@ public class Projet_11_ADHER extends Application {
 
         Scene scene = new Scene(root, 1200, 800);
 
-        primaryStage.setTitle("ADHER system");
+        primaryStage.setTitle("ADHER Service");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

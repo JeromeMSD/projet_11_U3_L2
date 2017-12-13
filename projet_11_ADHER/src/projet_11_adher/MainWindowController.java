@@ -21,15 +21,15 @@ import javafx.scene.text.TextAlignment;
 public class MainWindowController implements Initializable {
 
     @FXML
-    private Label titre;
+    private Label title;
     @FXML
     private Button btn;
     
     
     
     public void badBtn(){
-        titre.setText("EH !! On touche pas à mon bouton !! :(");
-        titre.setTextAlignment(TextAlignment.CENTER);
+        title.setText("EH !! On touche pas à mon bouton !! :(");
+        title.setTextAlignment(TextAlignment.CENTER);
     }
     
     
