@@ -5,9 +5,10 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import java.net.URL?>
 
-<GridPane id="MainGrid" prefHeight="1200.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_11_adher.MainWindowController" styleClass="root" >
+<GridPane id="MainGrid" prefHeight="1200.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_11_adher.MainWindowController" styleClass="root"  >
     <stylesheets>
         <URL value="@/css/MainCss.css" />
     </stylesheets>
@@ -37,8 +38,29 @@
     </rowConstraints>
     <children>
         
-        <Label id="title" fx:id="title" text="ADHER Service" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="0" alignment="TOP_CENTER" textAlignment="CENTER" />
+        <Label fx:id="title" text="ADHER Service" GridPane.columnIndex="0" GridPane.columnSpan="9" GridPane.rowIndex="0" textAlignment="CENTER" />
         
-        <Button onAction="#badBtn" fx:id="btn" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" >Le Bouton</Button>
+        <fx:define>
+            <ToggleGroup fx:id="option"/>  
+        </fx:define>
+        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="Registre d'appel" />
+            <RadioButton fx:id="ra" toggleGroup="$option" selected="true" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label text="Contrat de service" />
+            <RadioButton fx:id="cs" toggleGroup="$option" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="5" GridPane.rowIndex="1">
+            <Label text="Liste services" />
+            <RadioButton fx:id="ls"  toggleGroup="$option" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="7" GridPane.rowIndex="1">
+            <Label text="Liste activités" />
+            <RadioButton fx:id="la" toggleGroup="$option" />
+        </VBox>
+        
+        
+        <Button onAction="#badBtn" fx:id="btn" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" >Le Bouton</Button>
     </children>
 </GridPane>

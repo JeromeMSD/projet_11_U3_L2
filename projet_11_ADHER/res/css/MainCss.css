@@ -8,11 +8,12 @@ and open the template in the editor.
     Author     : jmddu
 */
 .root{
-    -fx-background: blue;
+    -fx-background-image: url("/image/bg.jpg");
 }
 
-.title{
-    -fx-text-align: center;
-    -fx-font-size: xx-large;
+#title{
+    -fx-font-family: impact;
+    -fx-font-color: grey;
     -fx-font-weight: bold;
+    -fx-font-size: xx-large;
 }
