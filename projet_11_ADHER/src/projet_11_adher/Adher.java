@@ -10,34 +10,34 @@ package projet_11_adher;
  * @author romain
  */
 public class Adher {
-    [void] [adher](){
+    
+    public Adher (){
+    }
+    void supprimeAdherents() {
     ;
-}
-    [void][supprimeAdherents()]{
-    ;
-}
-    [void][ajouteAdherents(adherent x)]{
+    }
+    void ajouteAdherents(Adherents x) {
         ;
     }
-    [void][renouvellementAdherents()]{
+    void renouvellementAdherents() {
         ;
     }
-    [void][supprimeAppel()]{
+    void supprimeAppel() {
         ;
     }
-    [void][ajouterAppel(appel x)]{
+    void ajouterAppel() {
         ;
     }
-    [void][supprimeIntervention()]{
+    void supprimeIntervention() {
         ;
     }
-    [void][ajouterIntervention(intervention x)]{
+    void ajouterIntervention(Interventions x) {
         ;
     }
-    [void][modifierIntervention()]{
+    void modifierIntervention() {
         ;
     }
-    [void][trouverIntervention()]{
+    void trouverIntervention() {
         ;
     }
 }
