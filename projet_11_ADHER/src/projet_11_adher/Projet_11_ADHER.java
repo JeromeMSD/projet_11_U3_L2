@@ -6,15 +6,10 @@
 package projet_11_adher;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.*;
 import javafx.fxml.*;
-import javafx.*;
 
 /**
  * fd
@@ -27,7 +22,7 @@ public class Projet_11_ADHER extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
 
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(root, 800, 600);
 
         primaryStage.setTitle("ADHER Service");
         primaryStage.setScene(scene);
