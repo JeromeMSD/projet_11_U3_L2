@@ -9,7 +9,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
 
-<GridPane id="MainGrid" prefHeight="800" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_11_adher.MainWindowController" styleClass="root"  >
+<GridPane id="MainGrid" prefHeight="800" prefWidth="700" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_11_adher.MainWindowController" styleClass="root"  >
     <stylesheets>
         <URL value="@/css/MainCss.css" />
     </stylesheets>

@@ -22,7 +22,7 @@ public class Projet_11_ADHER extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 800, 700);
 
         primaryStage.setTitle("ADHER Service");
         primaryStage.setScene(scene);
