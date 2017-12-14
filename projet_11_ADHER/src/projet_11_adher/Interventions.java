@@ -10,9 +10,11 @@ package projet_11_adher;
  * @author romain
  */
 public class Interventions {
- private [Integer][num];
- private [String][typeInteger];
- [void][interventions(Integer Num, String Type)]{
-     ;
- }
+    private Integer num;
+    private String typeInteger;
+ 
+    public Interventions(Integer Num, String Type){
+        this.num=Num;
+        this.typeInteger=Type;
+    }
 }
