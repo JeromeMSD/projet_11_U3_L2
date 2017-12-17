@@ -9,13 +9,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.FlowPane;
+import javafx.util.Callback;
 
 
 /**
@@ -32,11 +37,24 @@ public class MainWindowController implements Initializable {
     private ObservableList<Object> lsComp;  //liste des composants du FXML de la page Liste Services 
     private ObservableList<Object> laComp;  //liste des composants du FXML de la page Liste Activités
    
+    private Set<String> stringSet;
+    ObservableList observableList = FXCollections.observableArrayList();
     
     @FXML
     private Label title;
     @FXML
     private Label subtitle;
+    
+    @FXML
+    private RadioButton ra;
+    @FXML
+    private RadioButton cs;
+    @FXML
+    private RadioButton la;
+    @FXML
+    private RadioButton ls;
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Registre Appel FXML">
     @FXML
     private FlowPane flowDate;
@@ -58,7 +76,7 @@ public class MainWindowController implements Initializable {
     private Label res;
 // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Registre Appel FXML">
+    // <editor-fold defaultstate="collapsed" desc="Contrat Service FXML">
     @FXML
     private FlowPane flowDateDebut;
     @FXML
@@ -72,6 +90,17 @@ public class MainWindowController implements Initializable {
     @FXML
     private FlowPane flowTarif;
 // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Services List FXML">
+    @FXML
+    private ListView servicesList;
+// </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Activity List FXML">
+    @FXML
+    private ListView activityList;
+// </editor-fold>
+    
     
     @FXML
     private Button reset;
@@ -106,12 +135,17 @@ public class MainWindowController implements Initializable {
         flowSec.setVisible(false);
         flowTarif.setVisible(false);
         
+        servicesList.setVisible(false);
+        activityList.setVisible(false);
+        
         reset.setVisible(false);
         valid.setVisible(false);
     }
     
     
     public void showRegistreAppel(){
+        if(ra.isSelected() == false)
+            ra.selectedProperty().set(true);
         cleanScreen();
         subtitle.setText("Registre d'appel");
         flowDate.setVisible(true);
@@ -128,6 +162,8 @@ public class MainWindowController implements Initializable {
     }
     public void showContratService(){
         cleanScreen();
+        if(cs.isSelected() == false)
+            cs.selectedProperty().set(true);
         subtitle.setText("Contrat Service");
         reset.setVisible(true);
         valid.setVisible(true);
@@ -142,14 +178,18 @@ public class MainWindowController implements Initializable {
     } 
     public void showListeServices(){
         cleanScreen();
+        if(ls.isSelected() == false)
+            ls.selectedProperty().set(true);
         subtitle.setText("Liste Services");
-        
-        
+       
+        servicesList.setVisible(true);
     }
     public void showListeActivites(){
         cleanScreen();
+        if(la.isSelected() == false)
+            la.selectedProperty().set(true);
         subtitle.setText("Liste d'Activités");
-        
+        activityList.setVisible(true);
     }
     
     
@@ -160,6 +200,7 @@ public class MainWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cleanScreen();
         showRegistreAppel();
+        
     }    
     
     
