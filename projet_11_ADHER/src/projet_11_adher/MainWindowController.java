@@ -5,6 +5,7 @@
  */
 package projet_11_adher;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +14,20 @@ import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 
@@ -77,6 +85,7 @@ public class MainWindowController implements Initializable {
 // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Contrat Service FXML">
+    
     @FXML
     private FlowPane flowDateDebut;
     @FXML
@@ -106,11 +115,29 @@ public class MainWindowController implements Initializable {
     private Button reset;
     @FXML
     private Button valid;
+    @FXML
+    private ToggleGroup addOption;
+    @FXML
+    private RowConstraints row;
+    @FXML
+    private ColumnConstraints col;
+    @FXML
+    private RadioButton ce;
+    @FXML
+    private RadioButton nc;
     
     
     
-    public void badBtn(){
+    public void badBtn() throws IOException{
         title.setText("EH !! On touche pas à mon bouton !! :(");
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/InterventionWindow.fxml"));
+
+        Scene scene = new Scene(root, 400, 400);
+
+        stage.setTitle("ADHER Service - Nouvelle Intervention");
+        stage.setScene(scene);
+        stage.show();
     }
     public void resetBtn(){
         title.setText("ADHER Service");
@@ -143,6 +170,7 @@ public class MainWindowController implements Initializable {
     }
     
     
+    @FXML
     public void showRegistreAppel(){
         if(ra.isSelected() == false)
             ra.selectedProperty().set(true);
@@ -160,6 +188,7 @@ public class MainWindowController implements Initializable {
         reset.setVisible(true);
         valid.setVisible(true);
     }
+    @FXML
     public void showContratService(){
         cleanScreen();
         if(cs.isSelected() == false)

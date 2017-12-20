@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane id="interGrid" prefHeight="400" prefWidth="400" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet_11_adher.InterventionWindowController">
+        <stylesheets>
+        <URL value="@/css/MainCss.css"/>
+    </stylesheets>
+       <columnConstraints>
+        <ColumnConstraints fx:id="col" hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints fx:id="row" minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label fx:id="title" text="ADHER Service" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0"  GridPane.halignment="CENTER"/>
+        
+        <FlowPane  GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="2" styleClass="bar" maxHeight="40" />
+        
+        <Label fx:id="subtitle" styleClass="subtitle" text="Registre d'appel" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.halignment="CENTER" />
+        <fx:define>
+            <ToggleGroup fx:id="addOption"/>  
+        </fx:define>
+        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="Client existant" />
+            <RadioButton fx:id="ce" onAction="#showRegistreAppel" toggleGroup="$addOption" selected="true" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label text="Nouveau Client" />
+            <RadioButton fx:id="nc" onAction="#showContratService" toggleGroup="$addOption" />
+        </VBox>
+    </children>
+</GridPane>
