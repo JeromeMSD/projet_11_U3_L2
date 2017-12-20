@@ -10,17 +10,13 @@ package projet_11_adher;
  * @author Nicolas
  */
 public class Client extends Personnes{
-    private static int genID = 0;
-    private int numCli = 0;
     private String numTel;
     private String nomVille;
     
     public Client (String nom, String prenom, String numTel, String libRue, int codePostal, String nomVille){
         super(nom,prenom,libRue,codePostal);
         this.numTel=numTel;
-        this.nomVille=nomVille;
-        genID ++;
-        this.numCli=genID;     
+        this.nomVille=nomVille; 
     }
     
     public void appeler (){
