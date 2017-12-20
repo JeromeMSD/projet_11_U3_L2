@@ -128,13 +128,16 @@ public class MainWindowController implements Initializable {
     
     
     //Non FXML attribut
-    public ArrayList<Client> Clients= new ArrayList<Client>();
-    public ArrayList<Adherents> Adherents = new ArrayList<Adherents>();
+    public ArrayList<Client> clients= new ArrayList<>();
+    public ArrayList<Adherents> adherents = new ArrayList<>();
     
     public void badBtn() throws IOException{
         title.setText("EH !! On touche pas à mon bouton !! :(");
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/InterventionWindow.fxml"));
+        FXMLLoader fl = new FXMLLoader(getClass().getResource("/fxml/InterventionWindow.fxml"));
+        InterventionWindowController iwc = new InterventionWindowController(clients, adherents);
+        fl.setController(iwc);
+        Parent root = fl.load();
 
         Scene scene = new Scene(root, 400, 600);
 
