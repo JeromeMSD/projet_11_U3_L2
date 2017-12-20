@@ -13,31 +13,4 @@ public class Adher {
     
     public Adher (){
     }
-    void supprimeAdherents() {
-    ;
-    }
-    void ajouteAdherents(Adherents x) {
-        ;
-    }
-    void renouvellementAdherents() {
-        ;
-    }
-    void supprimeAppel() {
-        ;
-    }
-    void ajouterAppel() {
-        ;
-    }
-    void supprimeIntervention() {
-        ;
-    }
-    void ajouterIntervention(Interventions x) {
-        ;
-    }
-    void modifierIntervention() {
-        ;
-    }
-    void trouverIntervention() {
-        ;
-    }
 }
