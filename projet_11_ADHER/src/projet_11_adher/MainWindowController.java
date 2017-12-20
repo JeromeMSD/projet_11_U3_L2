@@ -221,6 +221,34 @@ public class MainWindowController implements Initializable {
         activityList.setVisible(true);
     }
     
+    void supprimeAdherents() {
+    ;
+    }
+    void ajouteAdherents(Adherents x) {
+        ;
+    }
+    void renouvellementAdherents() {
+        ;
+    }
+    void supprimeAppel() {
+        ;
+    }
+    void ajouterAppel() {
+        ;
+    }
+    void supprimeIntervention() {
+        ;
+    }
+    void ajouterIntervention(Interventions x) {
+        ;
+    }
+    void modifierIntervention() {
+        ;
+    }
+    void trouverIntervention() {
+        ;
+    }
+    
     
     /**
      * Initializes the controller class.
