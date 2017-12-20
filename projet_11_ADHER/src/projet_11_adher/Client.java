@@ -9,23 +9,15 @@ package projet_11_adher;
  *
  * @author Nicolas
  */
-public class Client {
-    private String nom;
-    private String prenom;
+public class Client extends Personnes{
     private static int genID = 0;
     private int numCli = 0;
     private String numTel;
-    private String libRue;
-    private int codePostal;
     private String nomVille;
     
     public Client (String nom, String prenom, String numTel, String libRue, int codePostal, String nomVille){
-        
-        this.nom=nom;
-        this.prenom=prenom;
+        super(nom,prenom,libRue,codePostal);
         this.numTel=numTel;
-        this.libRue=libRue;
-        this.codePostal=codePostal;
         this.nomVille=nomVille;
         genID ++;
         this.numCli=genID;     

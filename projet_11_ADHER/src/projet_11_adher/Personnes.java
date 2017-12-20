@@ -13,9 +13,9 @@ public class Personnes {
     private String nom;
     private String prenom;
     private String libRue;
-    private String codePostal;
+    private int codePostal;
     
-    public Personnes (String nom, String prenom, String libRue, String codePostal){
+    public Personnes (String nom, String prenom, String libRue, int codePostal){
         this.nom = nom;
         this.prenom = prenom;
         this.libRue = libRue;

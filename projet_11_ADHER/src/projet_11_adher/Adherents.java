@@ -11,18 +11,13 @@ import java.util.Date;
  *
  * @author romain
  */
-public class Adherents {
-    private String nom;
-    private String prenom;
-    private String adresse;
+public class Adherents extends Personnes {
     private Date dateEntree;
     private Date dateSortie;
     private Boolean disponibilite;
     
-    public Adherents(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie){
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
+    public Adherents(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie, int codePostal){
+        super(nom, prenom, adresse, codePostal);
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
         this.disponibilite = true;
