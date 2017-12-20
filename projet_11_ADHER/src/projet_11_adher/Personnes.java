@@ -17,12 +17,21 @@ public class Personnes {
     private String libRue;
     private int codePostal;
     
+    
+    public String getNom(){
+        return nom;
+    }
+    
+    public String getPrenom(){
+        return prenom;
+    }
+    
     public Personnes (String nom, String prenom, String libRue, int codePostal){
         this.nom = nom;
         this.prenom = prenom;
         this.libRue = libRue;
         this.codePostal = codePostal;
-                genID ++;
+        genID ++;
         this.numPer=genID;    
     }
 }

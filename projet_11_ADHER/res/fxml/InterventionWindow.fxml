@@ -12,10 +12,12 @@
         <URL value="@/css/MainCss.css"/>
     </stylesheets>
        <columnConstraints>
-        <ColumnConstraints fx:id="col" hgrow="SOMETIMES" percentWidth="25.0" />
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
-        <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
+        <ColumnConstraints fx:id="col" hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints fx:id="row" minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
@@ -27,22 +29,21 @@
         <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label fx:id="title" text="ADHER Service" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0"  GridPane.halignment="CENTER"/>
+        <Label fx:id="title" text="ADHER Service" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="0"  GridPane.halignment="CENTER"/>
         
-        <FlowPane  GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="1" styleClass="bar" maxHeight="40" />
+        <FlowPane  GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="1" styleClass="bar" maxHeight="40" />
         
-        <Label fx:id="subtitle" styleClass="subtitle" text="Nouvelle Intervention" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.halignment="CENTER" />
+        <Label fx:id="subtitle" styleClass="subtitle" text="Nouvelle Intervention" GridPane.columnIndex="0" GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.halignment="CENTER" />
         <fx:define>
             <ToggleGroup fx:id="addOption"/>  
         </fx:define>
-        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <Label text="Client existant" />
             <RadioButton fx:id="ce" onAction="#showClientExist" toggleGroup="$addOption" selected="true" />
         </VBox>
-        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="3" GridPane.rowIndex="2">
             <Label text="Nouveau Client" />
             <RadioButton fx:id="nc" onAction="#showNewClient" toggleGroup="$addOption" />
         </VBox>
@@ -50,10 +51,35 @@
         <!-- Client existant -->
         <FlowPane fx:id="exist" orientation="HORIZONTAL" GridPane.columnSpan="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <Label text="Client : " />
-            <ChoiceBox fx:id="client" prefWidth="150" />
+            <ChoiceBox fx:id="client" prefWidth="225" />
         </FlowPane>
- 
         
         
+        <HBox GridPane.rowIndex="4" GridPane.columnSpan="5" GridPane.columnIndex="1" spacing="30">
+            <VBox >
+                <Label text="Date debut :" />
+                <DatePicker prefWidth="125"/>
+            </VBox>
+            <VBox >
+                <Label text="Date debut :" />
+                <DatePicker prefWidth="125"/>
+            </VBox>
+        </HBox>
+        
+        <HBox GridPane.rowIndex="5" GridPane.columnSpan="5" GridPane.columnIndex="1" spacing="30">
+            <VBox >
+                <Label text="Secteur :" />
+                <ChoiceBox prefWidth="125"/>
+            </VBox>
+            <VBox >
+                <Label text="Activité :" />
+                <ChoiceBox prefWidth="125"/>
+            </VBox>
+        </HBox>
+        
+        <HBox spacing="50" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="6" alignment="CENTER">
+            <Button onAction="#resetBtn" fx:id="reset" maxHeight="30" prefWidth="100" styleClass="btn" >Reset</Button>
+            <Button onAction="#validBtn" fx:id="valid" maxHeight="30" prefWidth="100" styleClass="btn" >Validation</Button>
+        </HBox>
     </children>
 </GridPane>

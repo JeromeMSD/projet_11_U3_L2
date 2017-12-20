@@ -134,6 +134,10 @@ public class MainWindowController implements Initializable {
     public void badBtn() throws IOException{
         title.setText("EH !! On touche pas à mon bouton !! :(");
         Stage stage = new Stage();
+        
+        clients.add(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
+        clients.add(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
+        
         FXMLLoader fl = new FXMLLoader(getClass().getResource("/fxml/InterventionWindow.fxml"));
         InterventionWindowController iwc = new InterventionWindowController(clients, adherents);
         fl.setController(iwc);
@@ -254,7 +258,6 @@ public class MainWindowController implements Initializable {
     void trouverIntervention() {
         ;
     }
-    
     
     /**
      * Initializes the controller class.
