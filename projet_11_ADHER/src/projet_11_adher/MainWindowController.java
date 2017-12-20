@@ -44,7 +44,7 @@ public class MainWindowController implements Initializable {
     private ObservableList<Object> csComp;  //liste des composants du FXML de la page Contrat de Service
     private ObservableList<Object> lsComp;  //liste des composants du FXML de la page Liste Services 
     private ObservableList<Object> laComp;  //liste des composants du FXML de la page Liste Activités
-   
+    
     private Set<String> stringSet;
     ObservableList observableList = FXCollections.observableArrayList();
     
@@ -127,13 +127,16 @@ public class MainWindowController implements Initializable {
     private RadioButton nc;
     
     
+    //Non FXML attribut
+    public ArrayList<Client> Clients= new ArrayList<Client>();
+    public ArrayList<Adherents> Adherents = new ArrayList<Adherents>();
     
     public void badBtn() throws IOException{
         title.setText("EH !! On touche pas à mon bouton !! :(");
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/InterventionWindow.fxml"));
 
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(root, 400, 600);
 
         stage.setTitle("ADHER Service - Nouvelle Intervention");
         stage.setScene(scene);
