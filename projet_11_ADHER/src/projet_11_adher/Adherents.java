@@ -15,12 +15,14 @@ public class Adherents extends Personnes {
     private Date dateEntree;
     private Date dateSortie;
     private Boolean disponibilite;
+    private Activité activité;
     
-    public Adherents(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie, int codePostal){
+    public Adherents(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie, int codePostal, Activité activité){
         super(nom, prenom, adresse, codePostal);
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
         this.disponibilite = true;
+        this.activité=activité;
     }
 }
 

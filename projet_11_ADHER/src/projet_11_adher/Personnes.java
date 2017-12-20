@@ -10,6 +10,8 @@ package projet_11_adher;
  * @author romain
  */
 public class Personnes {
+    private static int genID = 0;
+    private int numPer = 0;
     private String nom;
     private String prenom;
     private String libRue;
@@ -20,5 +22,7 @@ public class Personnes {
         this.prenom = prenom;
         this.libRue = libRue;
         this.codePostal = codePostal;
+                genID ++;
+        this.numPer=genID;    
     }
 }
