@@ -58,22 +58,22 @@
         <HBox GridPane.rowIndex="4" GridPane.columnSpan="5" GridPane.columnIndex="1" spacing="30">
             <VBox >
                 <Label text="Date debut :" />
-                <DatePicker prefWidth="125"/>
+                <DatePicker fx:id="dateDeb" prefWidth="125"/>
             </VBox>
             <VBox >
-                <Label text="Date debut :" />
-                <DatePicker prefWidth="125"/>
+                <Label text="Date fin :" />
+                <DatePicker fx:id="dateFin" prefWidth="125"/>
             </VBox>
         </HBox>
         
         <HBox GridPane.rowIndex="5" GridPane.columnSpan="5" GridPane.columnIndex="1" spacing="30">
             <VBox >
                 <Label text="Secteur :" />
-                <ChoiceBox prefWidth="125"/>
+                <ChoiceBox fx:id="sec" prefWidth="125"/>
             </VBox>
             <VBox >
                 <Label text="Activité :" />
-                <ChoiceBox prefWidth="125"/>
+                <ChoiceBox fx:id="act" prefWidth="125"/>
             </VBox>
         </HBox>
         

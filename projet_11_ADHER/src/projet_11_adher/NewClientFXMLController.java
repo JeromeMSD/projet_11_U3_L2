@@ -14,6 +14,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -43,9 +44,15 @@ public class NewClientFXMLController implements Initializable {
     private TextField villeCli;
     @FXML
     private NumberField cdeVCli;
+    @FXML
+    private Button valid;
+    
+    
     
     private ArrayList<Client> lc = new ArrayList<>();
     private Client c;
+    private Stage stage;
+                                 
     
     public NewClientFXMLController(ArrayList<Client> l,Client c){
         this.lc = l;
@@ -61,6 +68,8 @@ public class NewClientFXMLController implements Initializable {
                             if(!"".equals(cdeVCli.getText())){
                                  lc.add( new Client(nomCli.getText(),prenomCli.getText(),telCli.getText(),libRue.getText(),Integer.parseInt(cdeVCli.getText()), villeCli.getText()) );
                                  subtitle.setText("Client Ajouté !");
+                                 stage = (Stage) valid.getScene().getWindow();
+                                 stage.close();
                             }
         }else{
            subtitle.setText("Certains champs sont vide.");
