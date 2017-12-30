@@ -5,12 +5,15 @@
  */
 package projet_11_adher;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,7 +38,7 @@ import javafx.stage.Stage;
  * @author jmddu_000
  */
 public class MainWindowController implements Initializable {
-  
+    private DAO saveAndLoad = new DAO();
     private Set<String> stringSet;
     private ArrayList<Intervention> interList = new ArrayList<>();
             
@@ -271,6 +274,15 @@ public class MainWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /*
+        try {
+            groupeClient.addList(saveAndLoad.loadClient());
+            groupeAdherent = addList(saveAndLoad.loadAdherent());
+            listeIntervention.addAll(saveAndLoad.loadIntervention());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
         cleanScreen();
         showRegistreAppel();
         
@@ -278,9 +290,16 @@ public class MainWindowController implements Initializable {
         activityList.setItems(listeActivites);
         
     }    
-    
-    
-    
-    
+
+    void save() {
+        System.out.println("Sauvegarde des différentes Instances.");
+        //saveAndLoad.saveClients();
+        //saveAndLoad.saveAdherents();
+        //saveAndLoad.saveInterventions();
+    }
+
+    private Groupe addList(Groupe loadAdherent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

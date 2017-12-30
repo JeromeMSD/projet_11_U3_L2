@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /**
- *
+ * Peut etre devraitont faire des classe groupe séparer pour facilité la sauvegarde et le chargement OU faire des E extend comme pour les list ??
+ * Ca peut etre tres bien
  * @author jmddu_000
  */
 public class Groupe {
@@ -47,6 +48,10 @@ public class Groupe {
     
     public void addToGroupe(Personne p){
         groupe.add(p);
+    }
+
+    void addList(ArrayList<Personne> listPersonne) {
+        groupe.addAll(listPersonne);
     }
     
 }

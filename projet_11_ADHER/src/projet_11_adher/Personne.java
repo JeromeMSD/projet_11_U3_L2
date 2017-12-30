@@ -21,7 +21,6 @@ public class Personne {
         return genID;
     }
     
-    
     public String getNom(){
         return nom;
     }

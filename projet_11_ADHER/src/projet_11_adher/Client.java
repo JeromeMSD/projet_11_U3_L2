@@ -19,7 +19,6 @@ public class Client extends Personne{
         this.nomVille=nomVille; 
     }
     
-    
     public void appeler (){
         
     }
