@@ -5,6 +5,9 @@
  */
 package projet_11_adher;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Nicolas
@@ -26,6 +29,10 @@ public enum Activité {
    
   public void getNomActivité(){
       System.out.println("Domaine d\'activité :" + nomActivité);
+  }
+  
+  public ObservableList<String> getActivites(){
+      return FXCollections.observableArrayList("Jadinage","Plomberie","Serrurerie","Maçonnerie","Electricité","Alarme");
   }
   
   public String toString(){

@@ -8,7 +8,7 @@ package projet_11_adher;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -20,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -28,7 +27,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 
 /**
@@ -37,17 +35,11 @@ import javafx.util.Callback;
  * @author jmddu_000
  */
 public class MainWindowController implements Initializable {
-
-    
-    private ObservableList<Object> allComp; //liste de tout les composants du FXML
-    private ObservableList<Object> raComp;  //liste des composants du FXML de la page Registre Appel
-    private ObservableList<Object> csComp;  //liste des composants du FXML de la page Contrat de Service
-    private ObservableList<Object> lsComp;  //liste des composants du FXML de la page Liste Services 
-    private ObservableList<Object> laComp;  //liste des composants du FXML de la page Liste Activités
-    
+  
     private Set<String> stringSet;
-    ObservableList observableList = FXCollections.observableArrayList();
-    
+    private ArrayList<Intervention> interList = new ArrayList<>();
+            
+            
     @FXML
     private Label title;
     @FXML
@@ -100,15 +92,15 @@ public class MainWindowController implements Initializable {
     private FlowPane flowTarif;
 // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Services List FXML">
+    // <editor-fold defaultstate="collapsed" desc="Intervention List FXML">
     @FXML
-    private ListView servicesList;
+    private ListView interventionsList;
 // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Activity List FXML">
     @FXML
     private ListView activityList;
-// </editor-fold>
+    // </editor-fold>
     
     
     @FXML
@@ -125,32 +117,45 @@ public class MainWindowController implements Initializable {
     private RadioButton ce;
     @FXML
     private RadioButton nc;
-    
+    @FXML
+    private Button nInter;
     
     //Non FXML attribut
-    public ArrayList<Client> clients= new ArrayList<>();
-    public ArrayList<Adherents> adherents = new ArrayList<>();
+    public Groupe groupeClient = new Groupe("Groupe Client");
+    public Groupe groupeAdherent = new Groupe("Groupe Adherent");
+    
+    private Activité enumActivite = Activité.Alarme;
+    private ObservableList<String> listeActivites = FXCollections.observableArrayList();
+    private ObservableList<String> listeIntervention = FXCollections.observableArrayList();
+    
     
     public void badBtn() throws IOException{
         title.setText("EH !! On touche pas à mon bouton !! :(");
+        
+        
+        groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
+        groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
+    }
+    public void resetBtn(){
+        Intervention i = new Intervention(new Client("l", "b", "dqsdqsd", "dqd", 0, "woaw"), new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000), 0, enumActivite),new Date(10000), new Date(10000), new SecteurGeographique("lol"), enumActivite, Integer.SIZE, "Tpue");
+        title.setText("ADHER Service");
+        listeIntervention.add(i.toString());
+        interventionsList.setItems(listeIntervention);
+    }
+    
+    public void newIntervention() throws IOException{
         Stage stage = new Stage();
         
-        clients.add(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
-        clients.add(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
-        
         FXMLLoader fl = new FXMLLoader(getClass().getResource("/fxml/InterventionWindow.fxml"));
-        InterventionWindowController iwc = new InterventionWindowController(clients, adherents);
+        InterventionWindowController iwc = new InterventionWindowController(groupeClient, groupeAdherent,interList);
         fl.setController(iwc);
+        
         Parent root = fl.load();
 
         Scene scene = new Scene(root, 400, 600);
-
         stage.setTitle("ADHER Service - Nouvelle Intervention");
         stage.setScene(scene);
         stage.show();
-    }
-    public void resetBtn(){
-        title.setText("ADHER Service");
     }
     
     public void cleanScreen(){
@@ -172,7 +177,8 @@ public class MainWindowController implements Initializable {
         flowSec.setVisible(false);
         flowTarif.setVisible(false);
         
-        servicesList.setVisible(false);
+        interventionsList.setVisible(false);
+        nInter.setVisible(false);
         activityList.setVisible(false);
         
         reset.setVisible(false);
@@ -215,13 +221,14 @@ public class MainWindowController implements Initializable {
         flowSec.setVisible(true);
         flowTarif.setVisible(true);
     } 
-    public void showListeServices(){
+    public void showListeInterventions(){
         cleanScreen();
         if(ls.isSelected() == false)
             ls.selectedProperty().set(true);
-        subtitle.setText("Liste Services");
+        subtitle.setText("Liste intervention");
        
-        servicesList.setVisible(true);
+        interventionsList.setVisible(true);
+        nInter.setVisible(true);
     }
     public void showListeActivites(){
         cleanScreen();
@@ -231,13 +238,13 @@ public class MainWindowController implements Initializable {
         activityList.setVisible(true);
     }
     
-    void supprimeAdherents() {
+    void supprimeAdherent() {
     ;
     }
-    void ajouteAdherents(Adherents x) {
+    void ajouteAdherent(Adherent x) {
         ;
     }
-    void renouvellementAdherents() {
+    void renouvellementAdherent() {
         ;
     }
     void supprimeAppel() {
@@ -249,7 +256,7 @@ public class MainWindowController implements Initializable {
     void supprimeIntervention() {
         ;
     }
-    void ajouterIntervention(Interventions x) {
+    void ajouterIntervention(Intervention x) {
         ;
     }
     void modifierIntervention() {
@@ -266,6 +273,9 @@ public class MainWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cleanScreen();
         showRegistreAppel();
+        
+        listeActivites.addAll(enumActivite.getActivites());
+        activityList.setItems(listeActivites);
         
     }    
     

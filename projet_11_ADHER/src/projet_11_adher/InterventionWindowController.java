@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,28 +38,26 @@ public class InterventionWindowController implements Initializable {
     @FXML
     private ChoiceBox client;
     @FXML
+    private ChoiceBox adherent;
+    @FXML
     private Button valid;
     @FXML
     private DatePicker dateDeb;
     @FXML
     private DatePicker dateFin;
   
-            
-
-    private ArrayList<Client> lc = new ArrayList<>();
-    private ArrayList<Adherents> la = new ArrayList<>();
-    private ArrayList<String> lcs = new ArrayList<>();
-    private ArrayList<String> las = new ArrayList<>();
+    private ArrayList<Intervention> li = new ArrayList<>();
+    private Groupe gc = new Groupe("Client");
+    private Groupe ga = new Groupe("Adherent");
     
-    private String nonSelectionne = new String("-------");
+    private String nonSelectionne = new String("----------");
     private Stage stage;
+        
     
-    
-    public InterventionWindowController(ArrayList<Client> lc,ArrayList<Adherents> la){
-        this.la = la;
-        this.lc = lc;
-        this.lcs = lcs;
-        this.las = las;
+    public InterventionWindowController(Groupe gc, Groupe ga, ArrayList<Intervention> li){
+        this.ga = ga;
+        this.gc = gc;
+        this.li = li;
     }
     
     
@@ -68,7 +67,7 @@ public class InterventionWindowController implements Initializable {
         
     public void showNewClient() throws IOException{
         nc.setSelected(true);
-        NewClientFXMLController nCC = new NewClientFXMLController(lc,null);
+        NewClientFXMLController nCC = new NewClientFXMLController(gc);
         
         FXMLLoader fl = new FXMLLoader(getClass().getResource("/fxml/NewClientFXML.fxml"));
         fl.setController(nCC);
@@ -110,6 +109,8 @@ public class InterventionWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showClientExist();
+        client.setItems(FXCollections.observableArrayList(gc.getStringList()));
+        client.getSelectionModel().select(0);
         // TODO
     }    
 

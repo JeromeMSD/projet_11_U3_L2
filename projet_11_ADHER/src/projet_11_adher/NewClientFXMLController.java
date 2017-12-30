@@ -5,15 +5,11 @@
  */
 package projet_11_adher;
 
-import com.sun.javaws.ui.SplashScreen;
 import fxml.other.NumberField;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -31,7 +27,6 @@ public class NewClientFXMLController implements Initializable {
      */
     @FXML
     private Label subtitle;
-    
     @FXML
     private TextField nomCli;
     @FXML
@@ -49,14 +44,12 @@ public class NewClientFXMLController implements Initializable {
     
     
     
-    private ArrayList<Client> lc = new ArrayList<>();
-    private Client c;
+    private Groupe gc;
     private Stage stage;
                                  
     
-    public NewClientFXMLController(ArrayList<Client> l,Client c){
-        this.lc = l;
-        this.c = c;
+    public NewClientFXMLController(Groupe gc){
+        this.gc = gc;
     }
     
     public void validBtn(){
@@ -66,7 +59,7 @@ public class NewClientFXMLController implements Initializable {
                     if(!"".equals(libRue.getText()))
                         if(!"".equals(villeCli.getText()))
                             if(!"".equals(cdeVCli.getText())){
-                                 lc.add( new Client(nomCli.getText(),prenomCli.getText(),telCli.getText(),libRue.getText(),Integer.parseInt(cdeVCli.getText()), villeCli.getText()) );
+                                 gc.addToGroupe( new Client(nomCli.getText(),prenomCli.getText(),telCli.getText(),libRue.getText(),Integer.parseInt(cdeVCli.getText()), villeCli.getText()));
                                  subtitle.setText("Client Ajouté !");
                                  stage = (Stage) valid.getScene().getWindow();
                                  stage.close();

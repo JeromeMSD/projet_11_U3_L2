@@ -9,7 +9,7 @@ package projet_11_adher;
  *
  * @author Nicolas
  */
-public class Client extends Personnes{
+public class Client extends Personne{
     private String numTel;
     private String nomVille;
     
@@ -19,8 +19,9 @@ public class Client extends Personnes{
         this.nomVille=nomVille; 
     }
     
+    
     public void appeler (){
         
     }
-        
+       
 }

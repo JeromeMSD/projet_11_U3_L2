@@ -11,9 +11,9 @@ import java.util.Date;
  *
  * @author romain
  */
-public class Interventions {
+public class Intervention {
     private Client client;
-    private Adherents adherent;
+    private Adherent adherent;
     private Date heureDebut;
     private Date heureFin;
     private SecteurGeographique secteur;
@@ -21,7 +21,7 @@ public class Interventions {
     private Integer num;
     private String typeInteger;
  
-    public Interventions(Client client, Adherents adherent, Date heureDebut, Date heureFin, SecteurGeographique secteur, Activité activité, Integer Num, String Type){
+    public Intervention(Client client, Adherent adherent, Date heureDebut, Date heureFin, SecteurGeographique secteur, Activité activité, Integer Num, String Type){
         this.client=client;
         this.adherent=adherent;
         this.heureDebut = heureDebut;
@@ -30,5 +30,9 @@ public class Interventions {
         this.activité=activité;
         this.num=Num;
         this.typeInteger=Type;
+    }
+    
+    public String toString(){
+        return client.toString()+"|"+adherent.toString()+"|"+heureDebut+"|"+heureFin+"|"+secteur+"|"+activité+"|"+num+"|"+typeInteger;
     }
 }

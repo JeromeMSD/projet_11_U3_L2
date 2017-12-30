@@ -9,13 +9,17 @@ package projet_11_adher;
  *
  * @author romain
  */
-public class Personnes {
+public class Personne {
     private static int genID = 0;
     private int numPer = 0;
     private String nom;
     private String prenom;
     private String libRue;
     private int codePostal;
+    
+    public int getID(){
+        return genID;
+    }
     
     
     public String getNom(){
@@ -26,12 +30,17 @@ public class Personnes {
         return prenom;
     }
     
-    public Personnes (String nom, String prenom, String libRue, int codePostal){
+    public Personne (String nom, String prenom, String libRue, int codePostal){
         this.nom = nom;
         this.prenom = prenom;
         this.libRue = libRue;
         this.codePostal = codePostal;
         genID ++;
         this.numPer=genID;    
+    }
+    
+    
+    public String toString(){
+        return this.getNom()+"_"+this.getPrenom()+"_"+this.getID();
     }
 }
