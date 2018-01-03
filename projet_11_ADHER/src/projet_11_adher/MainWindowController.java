@@ -39,10 +39,7 @@ import javafx.stage.Stage;
  */
 public class MainWindowController implements Initializable {
     private DAO saveAndLoad = new DAO();
-    private Set<String> stringSet;
-    private ArrayList<Intervention> interList = new ArrayList<>();
-            
-            
+    
     @FXML
     private Label title;
     @FXML
@@ -124,10 +121,12 @@ public class MainWindowController implements Initializable {
     private Button nInter;
     
     //Non FXML attribut
-    public Groupe groupeClient = new Groupe("Groupe Client");
-    public Groupe groupeAdherent = new Groupe("Groupe Adherent");
+    public Groupe<Client> groupeClient = new Groupe("Groupe Client");
+    public Groupe<Adherent> groupeAdherent = new Groupe("Groupe Adherent");
+    public Groupe<Intervention> groupeInter = new Groupe("Groupe Intervention");
     
     private Activité enumActivite = Activité.Alarme;
+    
     private ObservableList<String> listeActivites = FXCollections.observableArrayList();
     private ObservableList<String> listeIntervention = FXCollections.observableArrayList();
     
@@ -150,7 +149,7 @@ public class MainWindowController implements Initializable {
         Stage stage = new Stage();
         
         FXMLLoader fl = new FXMLLoader(getClass().getResource("/fxml/InterventionWindow.fxml"));
-        InterventionWindowController iwc = new InterventionWindowController(groupeClient, groupeAdherent,interList);
+        InterventionWindowController iwc = new InterventionWindowController(groupeClient, groupeAdherent,groupeInter);
         fl.setController(iwc);
         
         Parent root = fl.load();

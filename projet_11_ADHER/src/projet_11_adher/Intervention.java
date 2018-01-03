@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author romain
  */
-public class Intervention {
+public class Intervention extends ObjectE{
     private Client client;
     private Adherent adherent;
     private Date heureDebut;
@@ -32,7 +32,13 @@ public class Intervention {
         this.typeInteger=Type;
     }
     
+    @Override
     public String toString(){
-        return client.toString()+"|"+adherent.toString()+"|"+heureDebut+"|"+heureFin+"|"+secteur+"|"+activité+"|"+num+"|"+typeInteger;
+        return client.toString()+" -> "+adherent.toString()+"|"+heureDebut+"|"+heureFin+"|";
+    }
+    
+    @Override
+    public String toSave(){
+        return "String a écrire dans le fichier";
     }
 }

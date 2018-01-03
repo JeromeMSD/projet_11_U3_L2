@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /**
- * Peut etre devraitont faire des classe groupe séparer pour facilité la sauvegarde et le chargement OU faire des E extend comme pour les list ??
- * Ca peut etre tres bien
+ * 
  * @author jmddu_000
+ * @param <E> Classe
  */
-public class Groupe {
+public class Groupe <E extends ObjectE> {
     private String nom;
-    private ArrayList<Personne> groupe = new ArrayList<>();
-    
-    public Groupe(String nom){
-        this.nom = nom;
+    private ArrayList<E> groupe = new ArrayList<>();
+
+    public Groupe(String groupe_Client) {
+       this.nom = groupe_Client;
     }
     
     public String getGroupeName(){
@@ -32,26 +32,38 @@ public class Groupe {
     public ArrayList<String> getStringList(){
         ArrayList<String> l = new ArrayList<>();
         
-        for(Personne p : groupe)
-            l.add(p.toString());
+        for(E e : groupe)
+            l.add(e.toString());
         
         return l;
     }
     
-    public Personne getPersonne(String s) throws Exception{
-        for(Personne p : groupe)
-            if(s.equals(p.toString()))
-                return p;
+    public E getPersonne(String s) throws Exception{
+        for(E e: groupe)
+            if(s.equals(e.toString()))
+                return e;
         
         throw new NotFound();
     }
     
-    public void addToGroupe(Personne p){
-        groupe.add(p);
-    }
-
-    void addList(ArrayList<Personne> listPersonne) {
-        groupe.addAll(listPersonne);
+    public void addToGroupe(E e){
+        groupe.add(e);
     }
     
+    public void removeFromGroupe(E e){
+        groupe.remove(e);
+    }
+
+    public void addList(ArrayList<E> list) {
+        groupe.addAll(list);
+    }
+    
+    
+    public ArrayList<String> save(){
+        ArrayList<String> ls = new ArrayList<>();
+        
+        for (E e : groupe)
+            ls.add(e.toSave());
+        return ls;
+    }
 }

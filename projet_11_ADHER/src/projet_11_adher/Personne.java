@@ -9,7 +9,7 @@ package projet_11_adher;
  *
  * @author romain
  */
-public class Personne {
+public class Personne extends ObjectE{
     private static int genID = 0;
     private int numPer = 0;
     private String nom;
@@ -38,7 +38,7 @@ public class Personne {
         this.numPer=genID;    
     }
     
-    
+    @Override
     public String toString(){
         return this.getNom()+"_"+this.getPrenom()+"_"+this.getID();
     }

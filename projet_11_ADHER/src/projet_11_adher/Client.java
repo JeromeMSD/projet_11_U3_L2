@@ -19,8 +19,13 @@ public class Client extends Personne{
         this.nomVille=nomVille; 
     }
     
+    
     public void appeler (){
         
     }
-       
+    
+    @Override
+    public String toSave(){
+        return "String a écrire dans le fichier";
+    }
 }

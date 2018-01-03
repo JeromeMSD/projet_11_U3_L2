@@ -28,5 +28,10 @@ public class Adherent extends Personne {
     public Boolean estDisponnible(){
         return disponibilite;
     }
+    
+    @Override
+    public String toSave(){
+        return "String a écrire dans le fichier";
+    }
 }
 

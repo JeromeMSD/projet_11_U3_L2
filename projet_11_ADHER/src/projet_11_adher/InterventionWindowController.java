@@ -46,18 +46,18 @@ public class InterventionWindowController implements Initializable {
     @FXML
     private DatePicker dateFin;
   
-    private ArrayList<Intervention> li = new ArrayList<>();
-    private Groupe gc = new Groupe("Client");
-    private Groupe ga = new Groupe("Adherent");
+    private Groupe<Intervention> gi = new Groupe<>("Intervention");
+    private Groupe<Client> gc = new Groupe<>("Client");
+    private Groupe<Adherent> ga = new Groupe<>("Adherent");
     
     private String nonSelectionne = new String("----------");
     private Stage stage;
         
     
-    public InterventionWindowController(Groupe gc, Groupe ga, ArrayList<Intervention> li){
+    public InterventionWindowController(Groupe gc, Groupe ga, Groupe<Intervention> li){
         this.ga = ga;
         this.gc = gc;
-        this.li = li;
+        this.gi = li;
     }
     
     
