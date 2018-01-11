@@ -39,6 +39,6 @@ public class Intervention extends ObjectE{
     
     @Override
     public String toSave(){
-        return "String a écrire dans le fichier";
+        return  client + ";" + adherent +";" + heureDebut +";" + heureFin +";"+ secteur + ";" + activité + ";" + num + ";" + typeInteger + ";";
     }
 }

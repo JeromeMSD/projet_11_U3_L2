@@ -32,7 +32,7 @@ public class Adherent extends Personne {
     
     @Override
     public String toSave(){
-        return "String a écrire dans le fichier";
+        return dateEntree + ";" + dateSortie + ";" + disponibilite + ";" + ";" +activité + ";";
     }
 }
 
