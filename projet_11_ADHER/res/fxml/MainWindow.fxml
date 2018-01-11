@@ -57,8 +57,8 @@
             <RadioButton fx:id="ls" onAction="#showListeInterventions" toggleGroup="$option" />
         </VBox>
         <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.columnIndex="7" GridPane.rowIndex="1">
-            <Label text="Liste activités" />
-            <RadioButton fx:id="la" onAction="#showListeActivites" toggleGroup="$option" />
+            <Label text="Gestion des liste" />
+            <RadioButton fx:id="la" onAction="#showGestionListe" toggleGroup="$option" />
         </VBox>
         
         <FlowPane  GridPane.columnIndex="0" GridPane.columnSpan="10" GridPane.rowIndex="2" styleClass="bar" maxHeight="40" />
@@ -191,10 +191,18 @@
          <Button onAction="#rmIntervention" fx:id="rmInter" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Supprimer intervention</Button>
          <Button onAction="#newIntervention" fx:id="nInter" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Nouvelle intervention</Button>
         <!-- Liste des Activités -->
-        <ListView  fx:id="activityList" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="3" GridPane.rowSpan="6"  />
-            
+        <VBox fx:id="vboxAct" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+            <Label text="Liste des Activités : "/>
+            <ListView  fx:id="activityList" />            
+        </VBox>
+        
+        <VBox fx:id="vboxSec" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2">
+            <Label text="Liste des Secteur Géographique : "/>
+            <ListView  fx:id="secGeoList" />            
+        </VBox>
         
         <Button onAction="#resetBtn" fx:id="reset" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Reset</Button>
-        <Button onAction="#badBtn" fx:id="valid" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Validation</Button>
+        <Button onAction="#validBtn" fx:id="valid" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Validation</Button>
+
     </children>
 </GridPane>

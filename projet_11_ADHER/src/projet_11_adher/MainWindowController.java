@@ -25,6 +25,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -99,9 +100,16 @@ public class MainWindowController implements Initializable {
     private Button nInter;
 // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Activity List FXML">
+    // <editor-fold defaultstate="collapsed" desc="List FXML">
     @FXML
     private ListView activityList;
+    @FXML
+    private ListView secGeoList;
+    @FXML
+    private VBox vboxAct;
+    @FXML
+    private VBox vboxSec;
+    
     // </editor-fold>
     
     
@@ -120,6 +128,98 @@ public class MainWindowController implements Initializable {
     @FXML
     private RadioButton nc;
     
+    // <editor-fold defaultstate="collapsed" desc="Affichage composant FXML">
+    public void cleanScreen(){
+        subtitle.setText("");
+        flowDate.setVisible(false);
+        flowH.setVisible(false);
+    
+        flowClient.setVisible(false);
+        flowTelC.setVisible(false);
+        flowHr.setVisible(false);
+        flowAt.setVisible(false);
+        flowAc.setVisible(false);
+        flowDem.setVisible(false);
+        res.setVisible(false);
+        
+        flowDateDebut.setVisible(false);
+        flowNomRais.setVisible(false);
+        flowAddr.setVisible(false);
+        flowResp.setVisible(false);
+        flowSec.setVisible(false);
+        flowTarif.setVisible(false);
+        
+        interventionsList.setVisible(false);
+        nInter.setVisible(false);
+        rmInter.setVisible(false);
+        
+        vboxAct.setVisible(false);
+        vboxSec.setVisible(false);
+        
+        reset.setVisible(false);
+        valid.setVisible(false);
+    }
+    
+    
+    @FXML
+    public void showRegistreAppel(){
+        if(ra.isSelected() == false)
+            ra.selectedProperty().set(true);
+        cleanScreen();
+        subtitle.setText("Registre d'appel");
+        flowDate.setVisible(true);
+        flowH.setVisible(true);
+        flowClient.setVisible(true);
+        flowTelC.setVisible(true);
+        flowHr.setVisible(true);
+        flowAt.setVisible(true);
+        flowAc.setVisible(true);
+        flowDem.setVisible(true);
+        res.setVisible(true);
+        reset.setVisible(true);
+        valid.setVisible(true);
+    }
+    @FXML
+    public void showContratService(){
+        cleanScreen();
+        if(cs.isSelected() == false)
+            cs.selectedProperty().set(true);
+        subtitle.setText("Contrat Service");
+
+        
+               
+        flowDateDebut.setVisible(true);
+        flowNomRais.setVisible(true);
+        flowAddr.setVisible(true);
+        flowResp.setVisible(true);
+        flowSec.setVisible(true);
+        flowTarif.setVisible(true);
+    } 
+    public void showListeInterventions(){
+        cleanScreen();
+        if(ls.isSelected() == false)
+            ls.selectedProperty().set(true);
+        subtitle.setText("Liste intervention");
+       
+        interventionsList.setVisible(true);
+        nInter.setVisible(true);
+        rmInter.setVisible(true);
+    }
+    public void showGestionListe(){
+        cleanScreen();
+        if(la.isSelected() == false)
+            la.selectedProperty().set(true);
+        subtitle.setText("Gestion des liste");
+        
+        vboxAct.setVisible(true);
+        vboxSec.setVisible(true);
+    }
+    
+    //</editor-fold>
+    
+    
+    
+    
     //Non FXML attribut
     public Groupe<Client> groupeClient = new Groupe("Groupe Client");
     public Groupe<Adherent> groupeAdherent = new Groupe("Groupe Adherent");
@@ -129,9 +229,10 @@ public class MainWindowController implements Initializable {
     
     private ObservableList<String> listeActivites = FXCollections.observableArrayList();
     private ObservableList<String> listeIntervention = FXCollections.observableArrayList();
+    private ObservableList<String> listeSecteurGeographique = FXCollections.observableArrayList();
     
     
-    public void badBtn() throws IOException{
+    public void validBtn() throws IOException{
         groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
         groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
         
@@ -165,93 +266,6 @@ public class MainWindowController implements Initializable {
         stage.show();
     }
     
-    // <editor-fold defaultstate="collapsed" desc="Affichage composant FXML">
-    public void cleanScreen(){
-        subtitle.setText("");
-        flowDate.setVisible(false);
-        flowH.setVisible(false);
-    
-        flowClient.setVisible(false);
-        flowTelC.setVisible(false);
-        flowHr.setVisible(false);
-        flowAt.setVisible(false);
-        flowAc.setVisible(false);
-        flowDem.setVisible(false);
-        res.setVisible(false);
-        
-        flowDateDebut.setVisible(false);
-        flowNomRais.setVisible(false);
-        flowAddr.setVisible(false);
-        flowResp.setVisible(false);
-        flowSec.setVisible(false);
-        flowTarif.setVisible(false);
-        
-        interventionsList.setVisible(false);
-        nInter.setVisible(false);
-        rmInter.setVisible(false);
-        
-        activityList.setVisible(false);
-        
-        reset.setVisible(false);
-        valid.setVisible(false);
-    }
-    
-    
-    @FXML
-    public void showRegistreAppel(){
-        if(ra.isSelected() == false)
-            ra.selectedProperty().set(true);
-        cleanScreen();
-        subtitle.setText("Registre d'appel");
-        flowDate.setVisible(true);
-        flowH.setVisible(true);
-        flowClient.setVisible(true);
-        flowTelC.setVisible(true);
-        flowHr.setVisible(true);
-        flowAt.setVisible(true);
-        flowAc.setVisible(true);
-        flowDem.setVisible(true);
-        res.setVisible(true);
-        reset.setVisible(true);
-        valid.setVisible(true);
-    }
-    @FXML
-    public void showContratService(){
-        cleanScreen();
-        if(cs.isSelected() == false)
-            cs.selectedProperty().set(true);
-        subtitle.setText("Contrat Service");
-        reset.setVisible(true);
-        valid.setVisible(true);
-        
-               
-        flowDateDebut.setVisible(true);
-        flowNomRais.setVisible(true);
-        flowAddr.setVisible(true);
-        flowResp.setVisible(true);
-        flowSec.setVisible(true);
-        flowTarif.setVisible(true);
-    } 
-    public void showListeInterventions(){
-        cleanScreen();
-        if(ls.isSelected() == false)
-            ls.selectedProperty().set(true);
-        subtitle.setText("Liste intervention");
-       
-        interventionsList.setVisible(true);
-        nInter.setVisible(true);
-        rmInter.setVisible(true);
-    }
-    public void showListeActivites(){
-        cleanScreen();
-        if(la.isSelected() == false)
-            la.selectedProperty().set(true);
-        subtitle.setText("Liste d'Activités");
-        activityList.setVisible(true);
-    }
-    
-    //</editor-fold>
-    
     
     public void newClient() throws IOException{
         NewClientFXMLController nCC = new NewClientFXMLController(groupeClient);
@@ -270,8 +284,17 @@ public class MainWindowController implements Initializable {
         refresh();
     }
     
+    void ajouterAdherent(){
+        ;
+    }
+        
+    void resetAdherent(){
+        /// remise a zero des champs interface
+        ;
+    }
+    
     void supprimeAdherent() {
-    ;
+        ;
     }
     void ajouteAdherent(Adherent x) {
         ;
@@ -285,19 +308,6 @@ public class MainWindowController implements Initializable {
     void ajouterAppel() {
         ;
     }
-    void supprimeIntervention() {
-        ;
-    }
-    void ajouterIntervention(Intervention x) {
-        ;
-    }
-    void modifierIntervention() {
-        ;
-    }
-    void trouverIntervention() {
-        ;
-    }
-    
     /**
      * Initializes the controller class.
      */
