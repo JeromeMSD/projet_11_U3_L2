@@ -28,6 +28,7 @@ public class DAO {
     private final static String CLIENT_FILE_NAME = "clients.txt";
     private final static String ADHERENT_FILE_NAME = "adherents.txt";
     private final static String INTERVENTION_FILE_NAME = "interventions.txt";
+    private final static String DEMANDE_FILE_NAME = "demandes.txt";
 
     public void saveClients(Groupe<Client> gc){
         File file = new File(RESOURCES_PATH + CLIENT_FILE_NAME);
@@ -90,6 +91,34 @@ public class DAO {
     public void saveInterventions(Groupe<Intervention> gi) {
         File file = new File(RESOURCES_PATH + INTERVENTION_FILE_NAME);
         ArrayList<String> gs = gi.save();
+        FileWriter fw  = null;
+        BufferedWriter bw = null;
+ 
+        try {
+            fw  = new FileWriter(file);
+            bw = new BufferedWriter(fw);
+            
+            for(String s : gs){
+                bw.write(s);
+                bw.newLine();
+            }
+
+	} catch (IOException e) {
+			e.printStackTrace();
+	} finally {
+		try {
+                    if (bw != null)
+                        bw.close();
+                    if (fw != null)
+                    	fw.close();
+		} catch (IOException ex) {
+				ex.printStackTrace();
+		}
+        }
+    }
+    public void saveDemandes(Groupe<Demande> gd) {
+        File file = new File(RESOURCES_PATH + DEMANDE_FILE_NAME);
+        ArrayList<String> gs = gd.save();
         FileWriter fw  = null;
         BufferedWriter bw = null;
  
@@ -207,6 +236,42 @@ public class DAO {
             while(str != null){
                 strSplit = str.split(SEPARATOR);
                 l.add(new Intervention(gc.getPersonne(strSplit[0]), ga.getPersonne(strSplit[1]), new Date(Integer.parseInt(strSplit[2])),new Date(Integer.parseInt(strSplit[3])), new SecteurGeographique(strSplit[4]), Activité.valueOf(strSplit[5]), Integer.parseInt(strSplit[6]), strSplit[7]));
+                str = br.readLine();
+            }
+            
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                if (br != null)
+                    br.close();
+                if (fr != null)
+                    fr.close();
+            } catch (IOException ex) {
+                    ex.printStackTrace();
+            }
+     
+        }   
+        
+        return l;
+    }
+    public ArrayList<Demande> loadDemandes(Groupe<Client> gc) {
+        ArrayList<Demande> l = new ArrayList<>();
+        File file = new File(RESOURCES_PATH + DEMANDE_FILE_NAME);
+        FileReader fr = null;
+        BufferedReader br = null;
+        
+        try{
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+            String[] strSplit = null;
+            String str = br.readLine();
+            
+            while(str != null){
+                strSplit = str.split(SEPARATOR);
+                l.add(new 
                 str = br.readLine();
             }
             
