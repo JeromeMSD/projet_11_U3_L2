@@ -10,9 +10,22 @@ package projet_11_adher;
  * @author romain
  */
 public class SecteurGeographique {
-    private String nom;
+    private String nomVille;
+    private int cdePostal;
+
+    public SecteurGeographique(String s){
+        String str[] = s.split("-");
+        this.cdePostal = Integer.parseInt(str[0]);
+        this.nomVille = str[1];
+    }
     
-    public SecteurGeographique(String nom){
-        this.nom = nom;
+    public SecteurGeographique(int cdePostal, String nomVille){
+        this.nomVille = nomVille;
+        this.cdePostal = cdePostal;
+    }
+    
+    @Override
+    public String toString(){
+        return cdePostal+"-"+nomVille;
     }
 }
