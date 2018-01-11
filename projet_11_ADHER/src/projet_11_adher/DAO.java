@@ -11,26 +11,24 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jdk.nashorn.internal.objects.NativeDebug;
 
 /**
  *
  * @author jmddu_000
  */
 public class DAO {
-    private final static String RESOURCES_PATH= "/res/save/";
+    private final static String RESOURCES_PATH= "/save/";
     private final static String SEPARATOR = ";";
     private final static String CLIENT_FILE_NAME = "clients.txt";
     private final static String ADHERENT_FILE_NAME = "adherents.txt";
     private final static String INTERVENTION_FILE_NAME = "interventions.txt";
 
     public void saveClients(Groupe<Client> gc){
-        File file = new File(getClass().getResource(RESOURCES_PATH) + CLIENT_FILE_NAME);
+        File file = new File(getClass().getResource(RESOURCES_PATH + CLIENT_FILE_NAME).toString());
         ArrayList<String> gs = gc.save();
         FileWriter fw  = null;
         BufferedWriter bw = null;
@@ -59,7 +57,7 @@ public class DAO {
     }
 
     public void saveAdherents(Groupe<Adherent> ga) {
-        File file = new File(getClass().getResource(RESOURCES_PATH)  + ADHERENT_FILE_NAME);
+        File file = new File(getClass().getResource(RESOURCES_PATH + ADHERENT_FILE_NAME).toString());
         ArrayList<String> gs = ga.save();
         FileWriter fw  = null;
         BufferedWriter bw = null;
@@ -88,7 +86,7 @@ public class DAO {
     }
 
     public void saveInterventions(Groupe<Intervention> gi) {
-        File file = new File(getClass().getResource(RESOURCES_PATH)  + INTERVENTION_FILE_NAME);
+        File file = new File(getClass().getResource(RESOURCES_PATH + INTERVENTION_FILE_NAME).toString());
         ArrayList<String> gs = gi.save();
         FileWriter fw  = null;
         BufferedWriter bw = null;
@@ -124,7 +122,7 @@ public class DAO {
     
     public ArrayList<Client> loadClients() {
         ArrayList<Client> l = new ArrayList<>();
-        File file = new File(getClass().getResource(RESOURCES_PATH)  + CLIENT_FILE_NAME);
+        File file = new File(getClass().getResource(RESOURCES_PATH + CLIENT_FILE_NAME).toString());
         FileReader fr = null;
         BufferedReader br = null;
         
@@ -159,7 +157,7 @@ public class DAO {
 
     public ArrayList<Adherent> loadAdherents() {
         ArrayList<Adherent> l = new ArrayList<>();
-        File file = new File(getClass().getResource(RESOURCES_PATH)  + CLIENT_FILE_NAME);
+        File file = new File(getClass().getResource(RESOURCES_PATH + CLIENT_FILE_NAME).toString());
         FileReader fr = null;
         BufferedReader br = null;
         
@@ -194,7 +192,7 @@ public class DAO {
 
     public ArrayList<Intervention> loadInterventions(Groupe<Client> gc, Groupe<Adherent> ga) {
         ArrayList<Intervention> l = new ArrayList<>();
-        File file = new File(getClass().getResource(RESOURCES_PATH)  + INTERVENTION_FILE_NAME);
+        File file = new File(getClass().getResource(RESOURCES_PATH + INTERVENTION_FILE_NAME).toString());
         FileReader fr = null;
         BufferedReader br = null;
         

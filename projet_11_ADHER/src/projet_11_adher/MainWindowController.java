@@ -167,6 +167,7 @@ public class MainWindowController implements Initializable {
         stage.show();
     }
     
+    // <editor-fold defaultstate="collapsed" desc="Affichage composant FXML">
     public void cleanScreen(){
         subtitle.setText("");
         flowDate.setVisible(false);
@@ -251,6 +252,8 @@ public class MainWindowController implements Initializable {
         activityList.setVisible(true);
     }
     
+    //</editor-fold>
+    
     void supprimeAdherent() {
     ;
     }
@@ -284,32 +287,26 @@ public class MainWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*
-        try {
-            groupeClient.addList(saveAndLoad.loadClient());
-            groupeAdherent = addList(saveAndLoad.loadAdherent());
-            listeIntervention.addAll(saveAndLoad.loadIntervention());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
+        System.out.println("Chargement de la Base de Donnée..");
+        
+        groupeClient.addList(saveAndLoad.loadClients());
+        groupeAdherent.addList(saveAndLoad.loadAdherents());
+        groupeInter.addList(saveAndLoad.loadInterventions(groupeClient,groupeAdherent));
+        
+        System.out.println("Base de Donnée chargé !");
         cleanScreen();
         showRegistreAppel();
         
         listeActivites.addAll(enumActivite.getActivites());
         activityList.setItems(listeActivites);
         
+        
     }    
 
     void save() {
         System.out.println("Sauvegarde des différentes Instances.");
-        //saveAndLoad.saveClients();
-        //saveAndLoad.saveAdherents();
-        //saveAndLoad.saveInterventions();
+        saveAndLoad.save(groupeClient, groupeAdherent, groupeInter);
     }
 
-    private Groupe addList(Groupe loadAdherent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
