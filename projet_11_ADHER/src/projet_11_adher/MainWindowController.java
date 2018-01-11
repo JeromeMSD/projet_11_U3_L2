@@ -233,14 +233,14 @@ public class MainWindowController implements Initializable {
     
     
     public void validBtn() throws IOException{
-        groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
-        groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
+        groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", new SecteurGeographique("100-Les Velux")));
+        groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", new SecteurGeographique("100-Les Velux")));
         
         ///Validation et affectation automatique
         
     }
     public void resetBtn(){
-        Intervention i = new Intervention(new Client("l", "b", "dqsdqsd", "dqd", 0, "woaw"), new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000), 0, enumActivite),new Date(10000), new Date(10000), new SecteurGeographique(63000,"Clermont"), enumActivite, Integer.SIZE, "Tpue");
+        Intervention i = new Intervention(new Client("l", "b", "dqsdqsd", "dqd", new SecteurGeographique("100-Les Velux")), new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000),new SecteurGeographique("100-Les Velux")),new Date(10000), new Date(10000), new SecteurGeographique(63000,"Clermont"), enumActivite, Integer.SIZE, "Tpue");
         title.setText("ADHER Service");
         listeIntervention.add(i.toString());
         interventionsList.setItems(listeIntervention);

@@ -191,13 +191,13 @@
          <Button onAction="#rmIntervention" fx:id="rmInter" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Supprimer intervention</Button>
          <Button onAction="#newIntervention" fx:id="nInter" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Nouvelle intervention</Button>
         <!-- Liste des Activités -->
-        <VBox fx:id="vboxAct" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
-            <Label text="Liste des Activités : "/>
+        <VBox fx:id="vboxAct" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="3">
+            <Label text="Activités : "/>
             <ListView  fx:id="activityList" />            
         </VBox>
         
-        <VBox fx:id="vboxSec" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2">
-            <Label text="Liste des Secteur Géographique : "/>
+        <VBox fx:id="vboxSec" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="3">
+            <Label text="Secteurs Géographiques : "/>
             <ListView  fx:id="secGeoList" />            
         </VBox>
         

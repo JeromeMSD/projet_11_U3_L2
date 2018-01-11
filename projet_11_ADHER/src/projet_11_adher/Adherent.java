@@ -17,8 +17,8 @@ public class Adherent extends Personne {
     private Boolean disponibilite;
     private Activité activité;
     
-    public Adherent(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie, int codePostal, Activité activité){
-        super(nom, prenom, adresse, codePostal);
+    public Adherent(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie, SecteurGeographique s){
+        super(nom, prenom, adresse, s);
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
         this.disponibilite = true;

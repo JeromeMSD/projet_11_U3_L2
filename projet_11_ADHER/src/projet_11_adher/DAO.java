@@ -136,7 +136,7 @@ public class DAO {
             
             while(str != null){
                 strSplit = str.split(SEPARATOR);
-                l.add(new Client(strSplit[0], strSplit[1], strSplit[2], strSplit[3], Integer.parseInt(strSplit[4]), strSplit[5]));
+                l.add(new Client(strSplit[0], strSplit[1], strSplit[2], strSplit[3], new SecteurGeographique(strSplit[4])));
                 str = br.readLine();
             }
             
@@ -171,7 +171,7 @@ public class DAO {
             
             while(str != null){
                 strSplit = str.split(SEPARATOR);
-                l.add(new Adherent(strSplit[0], strSplit[1], strSplit[2], new Date(Integer.parseInt(strSplit[3])), new Date(Integer.parseInt(strSplit[4])), Integer.parseInt(strSplit[5]), Activité.valueOf(strSplit[6])));
+                l.add(new Adherent(strSplit[0], strSplit[1], strSplit[2], new Date(Integer.parseInt(strSplit[3])), new Date(Integer.parseInt(strSplit[4])), new SecteurGeographique(strSplit[5])));
                 str = br.readLine();
             }
             
