@@ -58,6 +58,12 @@ public class Groupe <E extends ObjectE> {
         groupe.addAll(list);
     }
     
+    void rm(String s) {
+        for (E e : groupe)
+            if(e.toString().equals(s))
+                groupe.remove(e);
+    }
+    
     
     public ArrayList<String> save(){
         ArrayList<String> ls = new ArrayList<>();
@@ -66,4 +72,5 @@ public class Groupe <E extends ObjectE> {
             ls.add(e.toSave());
         return ls;
     }
+
 }

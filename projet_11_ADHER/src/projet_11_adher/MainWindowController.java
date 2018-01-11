@@ -95,6 +95,10 @@ public class MainWindowController implements Initializable {
     // <editor-fold defaultstate="collapsed" desc="Intervention List FXML">
     @FXML
     private ListView interventionsList;
+    @FXML
+    private Button rmInter;
+    @FXML
+    private Button nInter;
 // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Activity List FXML">
@@ -117,8 +121,6 @@ public class MainWindowController implements Initializable {
     private RadioButton ce;
     @FXML
     private RadioButton nc;
-    @FXML
-    private Button nInter;
     
     //Non FXML attribut
     public Groupe<Client> groupeClient = new Groupe("Groupe Client");
@@ -145,6 +147,11 @@ public class MainWindowController implements Initializable {
         interventionsList.setItems(listeIntervention);
     }
     
+    public void rmIntervention(){
+       String s = (String) interventionsList.getSelectionModel().getSelectedItem();
+       groupeInter.rm(s);
+    }
+    
     public void newIntervention() throws IOException{
         Stage stage = new Stage();
         
@@ -164,6 +171,7 @@ public class MainWindowController implements Initializable {
         subtitle.setText("");
         flowDate.setVisible(false);
         flowH.setVisible(false);
+    
         flowClient.setVisible(false);
         flowTelC.setVisible(false);
         flowHr.setVisible(false);
@@ -181,6 +189,8 @@ public class MainWindowController implements Initializable {
         
         interventionsList.setVisible(false);
         nInter.setVisible(false);
+        rmInter.setVisible(false);
+        
         activityList.setVisible(false);
         
         reset.setVisible(false);
@@ -231,6 +241,7 @@ public class MainWindowController implements Initializable {
        
         interventionsList.setVisible(true);
         nInter.setVisible(true);
+        rmInter.setVisible(true);
     }
     public void showListeActivites(){
         cleanScreen();

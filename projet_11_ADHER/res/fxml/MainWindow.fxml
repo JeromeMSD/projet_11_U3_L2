@@ -187,7 +187,8 @@
         
         <!-- Liste des Service -->
         <ListView  fx:id="interventionsList" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="3" GridPane.rowSpan="6" />
-          <Button onAction="#newIntervention" fx:id="nInter" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Nouvelle intervention</Button>
+         <Button onAction="#rmIntervention" fx:id="rmInter" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Supprimer intervention</Button>
+         <Button onAction="#newIntervention" fx:id="nInter" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Nouvelle intervention</Button>
         <!-- Liste des Activités -->
         <ListView  fx:id="activityList" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="3" GridPane.rowSpan="6"  />
             
