@@ -11,14 +11,14 @@ package projet_11_adher;
  */
 public class Personne extends ObjectE{
     private static int genID = 0;
-    private int numPer = 0;
+    private int numPers = 0;
     private String nom;
     private String prenom;
     private String libRue;
-    private int codePostal;
+    private SecteurGeographique secteur;
     
-    public int getID(){
-        return genID;
+    public int getNumPers(){
+        return numPers;
     }
     
     public String getNom(){
@@ -29,17 +29,25 @@ public class Personne extends ObjectE{
         return prenom;
     }
     
-    public Personne (String nom, String prenom, String libRue, int codePostal){
+    public String getLibRue(){
+        return libRue;
+    }
+    
+    public String getSecteurGeographique(){
+        return secteur.toString();
+    }
+        
+    public Personne (String nom, String prenom, String libRue, SecteurGeographique secteur){
         this.nom = nom;
         this.prenom = prenom;
         this.libRue = libRue;
-        this.codePostal = codePostal;
-        genID ++;
-        this.numPer=genID;    
+        this.secteur = secteur;
+        genID=genID+1;
+        this.numPers=genID;    
     }
     
     @Override
     public String toString(){
-        return this.getNom()+"_"+this.getPrenom()+"_"+this.getID();
+        return this.getNom()+";"+this.getPrenom()+";"+this.getNumPers();
     }
 }

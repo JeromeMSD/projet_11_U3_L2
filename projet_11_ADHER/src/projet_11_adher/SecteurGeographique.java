@@ -26,6 +26,6 @@ public class SecteurGeographique {
     
     @Override
     public String toString(){
-        return cdePostal+"-"+nomVille;
+        return cdePostal+";"+nomVille;
     }
 }
