@@ -20,11 +20,7 @@ public class Client extends Personne{
     public String getNumTel(){
         return numTel;
     }
-
-    public void appeler (){
-        
-    }
-    
+  
     @Override
     public String toSave(){
         return toString()+";"+this.getNumTel()+";"+getLibRue()+";"+getSecteurGeographique();
