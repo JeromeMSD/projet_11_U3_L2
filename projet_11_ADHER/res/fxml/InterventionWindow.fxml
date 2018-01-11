@@ -79,7 +79,7 @@
         
         <FlowPane orientation="HORIZONTAL" GridPane.columnSpan="5" GridPane.columnIndex="1" GridPane.rowIndex="6">
             <Label text="Adhérent disponible : " />
-            <ChoiceBox fx:id="adherent" prefWidth="275" />
+            <ChoiceBox fx:id="adherent" prefWidth="275"/>
         </FlowPane>
         
         <HBox spacing="50" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="6" alignment="CENTER">

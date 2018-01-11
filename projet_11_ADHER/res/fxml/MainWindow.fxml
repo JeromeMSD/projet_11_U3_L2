@@ -87,9 +87,10 @@
             </FlowPane>         
         </FlowPane>
         
-        <FlowPane fx:id="flowClient" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3">
+        <FlowPane fx:id="flowClient" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" >
             <Label text="Nom Client:" />
-            <TextField maxWidth="$col.prefWidth" />
+            <ChoiceBox fx:id="clientA" prefWidth="125"   />
+            <Button onAction="#newClient" styleClass="btn" >+</Button>
         </FlowPane>
         
         <FlowPane fx:id="flowTelC" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4">

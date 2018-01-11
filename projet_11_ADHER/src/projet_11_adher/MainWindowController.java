@@ -5,15 +5,10 @@
  */
 package projet_11_adher;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -56,6 +52,8 @@ public class MainWindowController implements Initializable {
     
     
     // <editor-fold defaultstate="collapsed" desc="Registre Appel FXML">
+    @FXML
+    private ChoiceBox clientA;
     @FXML
     private FlowPane flowDate;
     @FXML
@@ -134,11 +132,11 @@ public class MainWindowController implements Initializable {
     
     
     public void badBtn() throws IOException{
-        title.setText("EH !! On touche pas à mon bouton !! :(");
-        
-        
         groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
         groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", 100, "Les Velux"));
+        
+        ///Validation et affectation automatique
+        
     }
     public void resetBtn(){
         Intervention i = new Intervention(new Client("l", "b", "dqsdqsd", "dqd", 0, "woaw"), new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000), 0, enumActivite),new Date(10000), new Date(10000), new SecteurGeographique(63000,"Clermont"), enumActivite, Integer.SIZE, "Tpue");
@@ -254,6 +252,24 @@ public class MainWindowController implements Initializable {
     
     //</editor-fold>
     
+    
+    public void newClient() throws IOException{
+        NewClientFXMLController nCC = new NewClientFXMLController(groupeClient);
+        
+        FXMLLoader fl = new FXMLLoader(getClass().getResource("/fxml/NewClientFXML.fxml"));
+        fl.setController(nCC);
+        
+        Parent root = fl.load();
+        
+        Stage stage = new Stage();
+        Scene scene = new Scene(root, 300, 450);
+        
+        stage.setTitle("ADHER Service - Nouveau Client");
+        stage.setScene(scene);
+        stage.showAndWait();
+        refresh();
+    }
+    
     void supprimeAdherent() {
     ;
     }
@@ -300,12 +316,18 @@ public class MainWindowController implements Initializable {
         listeActivites.addAll(enumActivite.getActivites());
         activityList.setItems(listeActivites);
         
-        
+        refresh();
+        clientA.getSelectionModel().selectFirst();
     }    
+    
+    
+    public void refresh(){
+        clientA.setItems(FXCollections.observableArrayList(groupeClient.getStringList()));
+    }
 
     void save() {
         System.out.println("Sauvegarde des différentes Instances.");
-        saveAndLoad.save(groupeClient, groupeAdherent, groupeInter);
+        //saveAndLoad.save(groupeClient, groupeAdherent, groupeInter);
     }
 
     

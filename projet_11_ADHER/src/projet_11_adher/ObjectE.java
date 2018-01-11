@@ -10,6 +10,9 @@ package projet_11_adher;
  * @author jmddu_000
  */
 class ObjectE {
+    public Boolean estDisponnible(){
+        return false;
+    }
     
     public String toSave(){
         return "String";

@@ -81,7 +81,7 @@ public class InterventionWindowController implements Initializable {
         stage.setScene(scene);
         stage.showAndWait();
         
-        
+        refresh();
         ce.setSelected(true);
     }
     
@@ -109,10 +109,16 @@ public class InterventionWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showClientExist();
-        client.setItems(FXCollections.observableArrayList(gc.getStringList()));
-        client.getSelectionModel().select(0);
+        refresh();
+        client.getSelectionModel().selectFirst();
+        adherent.getSelectionModel().selectFirst();
         // TODO
     }    
+    
+    public void refresh(){
+        client.setItems(FXCollections.observableArrayList(gc.getStringList()));
+        adherent.setItems(FXCollections.observableArrayList(ga.getDisponnible()));
+    }
 
     
 }

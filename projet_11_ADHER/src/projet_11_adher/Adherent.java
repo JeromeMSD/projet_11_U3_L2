@@ -25,6 +25,7 @@ public class Adherent extends Personne {
         this.activité=activité;
     }
     
+    @Override
     public Boolean estDisponnible(){
         return disponibilite;
     }

@@ -16,7 +16,7 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 public class Groupe <E extends ObjectE> {
     private String nom;
     private ArrayList<E> groupe = new ArrayList<>();
-
+    
     public Groupe(String groupe_Client) {
        this.nom = groupe_Client;
     }
@@ -31,7 +31,7 @@ public class Groupe <E extends ObjectE> {
     
     public ArrayList<String> getStringList(){
         ArrayList<String> l = new ArrayList<>();
-        
+        l.add("----------");
         for(E e : groupe)
             l.add(e.toString());
         
@@ -64,6 +64,15 @@ public class Groupe <E extends ObjectE> {
                 groupe.remove(e);
     }
     
+    public ArrayList<String> getDisponnible(){
+        ArrayList<String> l = new ArrayList<>();
+        l.add("----------");
+        for(E e : groupe)
+            if(e.estDisponnible())
+                l.add(e.toString());
+        
+        return l;
+    }
     
     public ArrayList<String> save(){
         ArrayList<String> ls = new ArrayList<>();
