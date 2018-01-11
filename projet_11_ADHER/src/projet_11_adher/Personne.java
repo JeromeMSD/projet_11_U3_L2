@@ -47,7 +47,12 @@ public class Personne extends ObjectE{
     }
     
     @Override
+    public String toSave(){
+        return this.getNom()+";"+this.getPrenom();
+    }
+    
+    @Override
     public String toString(){
-        return this.getNom()+";"+this.getPrenom()+";"+this.getNumPers();
+        return this.getNom()+"_"+this.getPrenom()+"_"+this.getNumPers();
     }
 }

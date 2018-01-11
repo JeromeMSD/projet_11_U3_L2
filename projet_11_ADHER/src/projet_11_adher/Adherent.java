@@ -32,7 +32,7 @@ public class Adherent extends Personne {
     
     @Override
     public String toSave(){
-        return dateEntree + ";" + dateSortie + ";" + disponibilite + ";" + ";" +activité + ";";
+        return super.toSave()+";"+dateEntree + ";" + dateSortie + ";" + disponibilite + ";" +activité + ";";
     }
 }
 

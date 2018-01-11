@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Nicolas
  */
-public class Demande {
+public class Demande extends ObjectE {
     private Client client;
     private int heureAppel;
     private int minAppel;

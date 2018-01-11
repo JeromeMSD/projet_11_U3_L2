@@ -145,15 +145,16 @@ public class DAO {
         }
     }
     
-    public void save(Groupe<Client> gc, Groupe<Adherent> ga, Groupe<Intervention> gi){
+    public void save(Groupe<Client> gc, Groupe<Adherent> ga, Groupe<Intervention> gi,Groupe<Demande> gd){
         saveClients(gc);
         saveAdherents(ga);
+        saveDemandes(gd);
         saveInterventions(gi);
     }
     
     public ArrayList<Client> loadClients() {
         ArrayList<Client> l = new ArrayList<>();
-        File file = new File(RESOURCES_PATH + INTERVENTION_FILE_NAME);
+        File file = new File(RESOURCES_PATH + CLIENT_FILE_NAME);
         FileReader fr = null;
         BufferedReader br = null;
         
@@ -188,7 +189,7 @@ public class DAO {
 
     public ArrayList<Adherent> loadAdherents() {
         ArrayList<Adherent> l = new ArrayList<>();
-        File file = new File(RESOURCES_PATH + CLIENT_FILE_NAME);
+        File file = new File(RESOURCES_PATH + ADHERENT_FILE_NAME);
         FileReader fr = null;
         BufferedReader br = null;
         
@@ -271,7 +272,7 @@ public class DAO {
             
             while(str != null){
                 strSplit = str.split(SEPARATOR);
-                l.add(new 
+                l.add(new Demande(gc.getPersonne(strSplit[0]), Integer.parseInt(strSplit[1]), Integer.parseInt(strSplit[2]), strSplit[3]));
                 str = br.readLine();
             }
             

@@ -109,6 +109,14 @@ public class MainWindowController implements Initializable {
     private VBox vboxAct;
     @FXML
     private VBox vboxSec;
+    @FXML
+    private VBox vboxAl;
+    @FXML
+    private VBox vboxCl;
+    @FXML
+    private ListView clientL;
+    @FXML
+    private ListView adherentL;
     
     // </editor-fold>
     
@@ -155,9 +163,12 @@ public class MainWindowController implements Initializable {
         
         vboxAct.setVisible(false);
         vboxSec.setVisible(false);
+        vboxAl.setVisible(false);
+        vboxCl.setVisible(false);
         
         reset.setVisible(false);
         valid.setVisible(false);
+        refresh();
     }
     
     
@@ -186,6 +197,8 @@ public class MainWindowController implements Initializable {
             cs.selectedProperty().set(true);
         subtitle.setText("Contrat Service");
 
+        reset.setVisible(true);
+        valid.setVisible(true);
         
                
         flowDateDebut.setVisible(true);
@@ -213,6 +226,9 @@ public class MainWindowController implements Initializable {
         
         vboxAct.setVisible(true);
         vboxSec.setVisible(true);
+        
+        vboxAl.setVisible(true);
+        vboxCl.setVisible(true);
     }
     
     //</editor-fold>
@@ -224,17 +240,26 @@ public class MainWindowController implements Initializable {
     public Groupe<Client> groupeClient = new Groupe("Groupe Client");
     public Groupe<Adherent> groupeAdherent = new Groupe("Groupe Adherent");
     public Groupe<Intervention> groupeInter = new Groupe("Groupe Intervention");
+    public Groupe<Demande> groupeDem = new Groupe("Groupe Demande");
+    
     
     private Activité enumActivite = Activité.Alarme;
     
     private ObservableList<String> listeActivites = FXCollections.observableArrayList();
-    private ObservableList<String> listeIntervention = FXCollections.observableArrayList();
     private ObservableList<String> listeSecteurGeographique = FXCollections.observableArrayList();
     
     
     public void validBtn() throws IOException{
         groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", new SecteurGeographique("100-Les Velux")));
-        groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", new SecteurGeographique("100-Les Velux")));
+        groupeAdherent.addToGroupe(new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000),new SecteurGeographique("100-Les Velux")));
+        if(ra.isSelected()){
+            //Validation registre d'appel
+            ;
+        }else if(cs.isSelected()){
+            //validation contrat de service
+            ;
+        }
+        
         
         ///Validation et affectation automatique
         
@@ -242,8 +267,9 @@ public class MainWindowController implements Initializable {
     public void resetBtn(){
         Intervention i = new Intervention(new Client("l", "b", "dqsdqsd", "dqd", new SecteurGeographique("100-Les Velux")), new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000),new SecteurGeographique("100-Les Velux")),new Date(10000), new Date(10000), new SecteurGeographique(63000,"Clermont"), enumActivite, Integer.SIZE, "Tpue");
         title.setText("ADHER Service");
-        listeIntervention.add(i.toString());
-        interventionsList.setItems(listeIntervention);
+        groupeInter.addToGroupe(i);
+        
+        refresh();
     }
     
     public void rmIntervention(){
@@ -287,14 +313,9 @@ public class MainWindowController implements Initializable {
     void ajouterAdherent(){
         ;
     }
-        
-    void resetAdherent(){
-        /// remise a zero des champs interface
-        ;
-    }
     
-    void supprimeAdherent() {
-        ;
+    public void supprimerAdherent() {
+        System.out.println("coucou");
     }
     void ajouteAdherent(Adherent x) {
         ;
@@ -302,6 +323,10 @@ public class MainWindowController implements Initializable {
     void renouvellementAdherent() {
         ;
     }
+    public void supprimerClient(){
+        System.out.println("coucou");
+    }
+    
     void supprimeAppel() {
         ;
     }
@@ -313,13 +338,7 @@ public class MainWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Chargement de la Base de Donnée..");
-        
-        groupeClient.addList(saveAndLoad.loadClients());
-        groupeAdherent.addList(saveAndLoad.loadAdherents());
-        groupeInter.addList(saveAndLoad.loadInterventions(groupeClient,groupeAdherent));
-        
-        System.out.println("Base de Donnée chargé !");
+        //load();
         cleanScreen();
         showRegistreAppel();
         
@@ -333,12 +352,24 @@ public class MainWindowController implements Initializable {
     
     public void refresh(){
         clientA.setItems(FXCollections.observableArrayList(groupeClient.getStringList()));
+        clientL.setItems(FXCollections.observableArrayList(groupeClient.getStringList()));
+        adherentL.setItems(FXCollections.observableArrayList(groupeAdherent.getStringList()));
+        interventionsList.setItems(FXCollections.observableArrayList(groupeInter.getStringList()));
     }
 
     void save() {
         System.out.println("Sauvegarde des différentes Instances.");
-        //saveAndLoad.save(groupeClient, groupeAdherent, groupeInter);
+        saveAndLoad.save(groupeClient, groupeAdherent, groupeInter,groupeDem);
     }
 
-    
+    void load(){
+        System.out.println("Chargement de la Base de Donnée..");
+
+        groupeClient.addList(saveAndLoad.loadClients());
+        groupeAdherent.addList(saveAndLoad.loadAdherents());
+        groupeInter.addList(saveAndLoad.loadInterventions(groupeClient,groupeAdherent));
+        groupeDem.addList(saveAndLoad.loadDemandes(groupeClient));
+        
+        System.out.println("Base de Donnée chargé !");
+    }
 }
