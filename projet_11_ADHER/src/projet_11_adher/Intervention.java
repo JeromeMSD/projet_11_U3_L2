@@ -14,18 +14,18 @@ import java.util.Date;
 public class Intervention extends ObjectE{
     private Client client;
     private Adherent adherent;
-    private Date heureDebut;
-    private Date heureFin;
+    private Date dateDebut;
+    private Date dateFin;
     private SecteurGeographique secteur;
     private Activité activité;
     private Integer num;
     private String typeInteger;
  
-    public Intervention(Client client, Adherent adherent, Date heureDebut, Date heureFin, SecteurGeographique secteur, Activité activité, Integer Num, String Type){
+    public Intervention(Client client, Adherent adherent, Date dateDebut, Date dateFin, SecteurGeographique secteur, Activité activité, Integer Num, String Type){
         this.client=client;
         this.adherent=adherent;
-        this.heureDebut = heureDebut;
-        this.heureFin=heureFin;
+        this.dateDebut = dateDebut;
+        this.dateFin=dateFin;
         this.secteur=secteur;
         this.activité=activité;
         this.num=Num;
@@ -34,11 +34,11 @@ public class Intervention extends ObjectE{
     
     @Override
     public String toString(){
-        return client.toString()+" -> "+adherent.toString()+"|"+heureDebut+"|"+heureFin+"|";
+        return client.toString()+" -> "+adherent.toString()+"|"+dateDebut+"|"+dateFin+"|";
     }
     
     @Override
     public String toSave(){
-        return  client + ";" + adherent +";" + heureDebut +";" + heureFin +";"+ secteur + ";" + activité + ";" + num + ";" + typeInteger + ";";
+        return  client + ";" + adherent +";" + dateDebut +";" + dateFin +";"+ secteur + ";" + activité + ";" + num + ";" + typeInteger + ";";
     }
 }
