@@ -5,23 +5,30 @@
  */
 package projet_11_adher;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import javafx.util.converter.DateTimeStringConverter;
 
 /**
  *
  * @author Nicolas
  */
 public class Demande extends ObjectE {
+    private final SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
     private Client client;
     private int heureAppel;
     private int minAppel;
     private String demande;
+    private Date jourAppel;
+            
     
-    public Demande (Client client, int heureAppel,int minAppel, String demande){
+    public Demande (Client client, Date jourAppel, int heureAppel, int minAppel, String demande){
         this.client=client;
         this.heureAppel=heureAppel;
         this.minAppel=minAppel;
         this.demande=demande;
+        this.jourAppel=jourAppel;
     }
     
     public Client getClient(){
@@ -42,11 +49,11 @@ public class Demande extends ObjectE {
     
     @Override
     public String toString(){
-        return this.client.toString()+";"+this.heureAppel+";"+this.minAppel+";"+this.demande;
+        return this.client.toString()+"|"+format.format(jourAppel)+"|"+this.heureAppel+"|"+this.minAppel+"|"+this.demande;
     }
     
     public String toSave(){
-        return this.client.toSave()+";"+this.heureAppel+";"+this.minAppel+";"+this.demande;
+        return this.client.toString()+";"+format.format(jourAppel)+";"+this.heureAppel+";"+this.minAppel+";"+this.demande;
     }
 }
 

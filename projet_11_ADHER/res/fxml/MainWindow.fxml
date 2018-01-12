@@ -89,7 +89,7 @@
         
         <FlowPane fx:id="flowClient" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" >
             <Label text="Nom Client:" />
-            <ChoiceBox fx:id="clientA" prefWidth="125"   />
+            <ChoiceBox fx:id="clientA" prefWidth="125"  />
             <Button onAction="#ajouterClient" styleClass="btn" >+</Button>
         </FlowPane>
         
@@ -185,38 +185,45 @@
             <Label text="€ TTC" />
         </FlowPane>
         
-        
-        <!-- Liste des Service -->
-        <ListView  fx:id="interventionsList" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="3" GridPane.rowSpan="6" />
+        <!-- Liste des Interventions -->
+        <VBox fx:id="vboxDemL" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="3" GridPane.rowSpan="3" alignment="CENTER">
+            <Label text="Liste des demandes à traiter"/>
+            <ListView  fx:id="demandeL" />
+            <Button onAction="#supprimerDemande" styleClass="btn" >Supprimer la demande</Button>      
+        </VBox>
+        <VBox GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="6" GridPane.rowSpan="3">
+            <Label text="liste des interventions en cours :"/>
+            <ListView  fx:id="interventionsList"  />
+        </VBox>
         <Button onAction="#rmIntervention" fx:id="rmInter" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Supprimer intervention</Button>
         <Button onAction="#newIntervention" fx:id="nInter" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Nouvelle intervention</Button>
         <!-- Liste des Activités -->
-        <VBox fx:id="vboxAct" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="3">
-            <Label text="Activités : "/>
+        <VBox fx:id="vboxAct" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="3" alignment="CENTER">
+            <Label text="Activités "/>
             <ListView  fx:id="activityList" />            
         </VBox>
         
-        <VBox fx:id="vboxSec" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="3">
-            <Label text="Secteurs Géographiques : "/>
+        <VBox fx:id="vboxSec" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="3" alignment="CENTER">
+            <Label text="Secteurs Géographiques "/>
             <ListView  fx:id="secGeoList" />            
         </VBox>
         
-        <VBox fx:id="vboxCl" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="3" GridPane.rowSpan="3">
-            <Label text="Liste des Clients : "/>
+        <VBox fx:id="vboxCl" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="3" GridPane.rowSpan="3" alignment="CENTER">
+            <Label text="Liste des Clients"/>
             <ListView  fx:id="clientL" />
-            <Button onAction="#supprimerClient" styleClass="btn" >Supprimer le client</Button>      
+            <Button onAction="#supprimerClient" styleClass="btn"  >Supprimer le client</Button>      
         </VBox>
         
-        <VBox fx:id="vboxAl" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="7" GridPane.rowSpan="3">
-            <Label text="Liste des Adherent : "/>
+        <VBox fx:id="vboxAl" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="7" GridPane.rowSpan="3" alignment="CENTER">
+            <Label text="Liste des Adherents"/>
             <ListView  fx:id="adherentL" />
-            <Button onAction="#supprimerAdherent" styleClass="btn"  >Supprimer l'adherent</Button>            
+            <Button onAction="#supprimerAdherent" styleClass="btn" >Supprimer l'adherent</Button>            
         </VBox>
         
         
         <!-- Liste des Adherent en fin de contrat  -->
-        <VBox fx:id="vboxAFCL" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="3" GridPane.rowSpan="8">
-            <Label text="Liste des Adherent dont le contrat est fini : "/>
+        <VBox fx:id="vboxAFCL" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="3" GridPane.rowSpan="8" alignment="CENTER">
+            <Label text="Liste des Adherent dont le contrat est fini "/>
             <ListView  fx:id="adherentFCL" />
             <Button onAction="#ok" styleClass="btn"  >OK</Button>    
         </VBox>

@@ -5,24 +5,27 @@
  */
 package projet_11_adher;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
  * @author romain
  */
 public class Adherent extends Personne {
+    private final SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
     private Date dateEntree;
     private Date dateSortie;
     private Boolean disponibilite;
     private Activité activité;
     
-    public Adherent(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie, SecteurGeographique s){
+    public Adherent(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie, SecteurGeographique s, Activité activité){
         super(nom, prenom, adresse, s);
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
         this.disponibilite = true;
-        this.activité=activité;
+        this.activité= activité;
     }
     
     @Override
@@ -32,12 +35,7 @@ public class Adherent extends Personne {
     
     @Override
     public String toSave(){
-        return super.toSave()+";"+dateEntree + ";" + dateSortie + ";" + disponibilite + ";" +activité + ";";
-    }
-    
-    @Override
-    public String toString(){
-        return this.getNom() + this.getPrenom();
+        return super.toSave()+";"+format.format(dateEntree) + ";" +format.format(dateSortie)+";"+getSecteurGeographique()+ ";" +activité + ";";
     }
 
     public Date getDateSortie() {

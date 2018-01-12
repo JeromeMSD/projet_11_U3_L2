@@ -7,7 +7,7 @@ package projet_11_adher;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
@@ -45,6 +46,10 @@ public class InterventionWindowController implements Initializable {
     private DatePicker dateDeb;
     @FXML
     private DatePicker dateFin;
+    @FXML
+    private TextField sec;
+    @FXML
+    private ChoiceBox act;
   
     private Groupe<Intervention> gi = new Groupe<>("Intervention");
     private Groupe<Client> gc = new Groupe<>("Client");
@@ -85,14 +90,25 @@ public class InterventionWindowController implements Initializable {
         ce.setSelected(true);
     }
     
-    public void validBtn(){
+    public void validBtn() throws Exception{
+        Date debut;
+        Date fin;
+        Client c;
+        Adherent a;/*
         // Si un client a été selectionner
             // Si Un adherent à été selectionner
                 //Si secteur et activité selecttionner
-                    // Si la date de début des antérieur ou egal a la date de fin 
+                    // Si la date de début des antérieur ou egal a la date de fin
+                    debut = dateDeb.get;
+                    fin = 
+                    if( < ) {
                         //Ajouter l'intervention au registre
+                        c = gc.getPersonne((String) client.getSelectionModel().getSelectedItem());
+                        a = ga.getPersonne((String) adherent.getSelectionModel().getSelectedItem());
+                        gi.addToGroupe(new Intervention(, adherent, dateDebut, dateFin, secteur, Activité.Electricité, Integer.SIZE, nonSelectionne));*/
                         stage = (Stage) valid.getScene().getWindow();
                         stage.close();
+                    //}
                     // Sinon probleme concordance date
         // sinon probleme de champs vide
         
@@ -100,7 +116,11 @@ public class InterventionWindowController implements Initializable {
     
     public void resetBtn(){
         client.getSelectionModel().select(nonSelectionne);
-
+    }
+    
+    public void clientC() throws Exception{
+        Client c = gc.getPersonne((String) client.getSelectionModel().getSelectedItem());
+        sec.setText(c.getSecteurGeographique().toString());
     }
     
     /**
@@ -112,6 +132,8 @@ public class InterventionWindowController implements Initializable {
         refresh();
         client.getSelectionModel().selectFirst();
         adherent.getSelectionModel().selectFirst();
+        
+        
         // TODO
     }    
     

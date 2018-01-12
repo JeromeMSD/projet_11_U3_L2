@@ -41,6 +41,11 @@ public class Groupe <E extends ObjectE> {
     ArrayList<E> getList() {
         return groupe;
     }
+    
+    public E getFirst(){
+        return groupe.get(0);
+    }
+    
     public E getPersonne(String s) throws Exception{
         for(E e: groupe)
             if(s.equals(e.toString()))

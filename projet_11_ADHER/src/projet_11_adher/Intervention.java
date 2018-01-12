@@ -5,6 +5,7 @@
  */
 package projet_11_adher;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -12,6 +13,7 @@ import java.util.Date;
  * @author romain
  */
 public class Intervention extends ObjectE{
+    private final SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
     private Client client;
     private Adherent adherent;
     private Date dateDebut;
@@ -34,11 +36,11 @@ public class Intervention extends ObjectE{
     
     @Override
     public String toString(){
-        return client.toString()+" -> "+adherent.toString()+"|"+dateDebut+"|"+dateFin+"|";
+        return client.toString()+" -> "+adherent.toString()+"|"+format.format(dateDebut)+"|"+format.format(dateFin)+"|";
     }
     
     @Override
     public String toSave(){
-        return  client + ";" + adherent +";" + dateDebut +";" + dateFin +";"+ secteur + ";" + activité + ";" + num + ";" + typeInteger + ";";
+        return  client.toString() + ";" + adherent.toString() +";" + format.format(dateDebut) +";" + format.format(dateFin) +";"+ secteur + ";" + activité + ";" + num + ";" + typeInteger + ";";
     }
 }

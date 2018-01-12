@@ -48,7 +48,7 @@ public class Personne extends ObjectE{
     
     @Override
     public String toSave(){
-        return this.getNom()+";"+this.getPrenom();
+        return this.getNom()+";"+this.getPrenom()+";"+this.getLibRue();
     }
     
     @Override

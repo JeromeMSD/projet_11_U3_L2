@@ -11,12 +11,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.converter.DateTimeStringConverter;
 
 /**
  *
@@ -29,7 +28,8 @@ public class DAO {
     private final static String ADHERENT_FILE_NAME = "adherents.txt";
     private final static String INTERVENTION_FILE_NAME = "interventions.txt";
     private final static String DEMANDE_FILE_NAME = "demandes.txt";
-
+    private DateTimeStringConverter format = new DateTimeStringConverter(Locale.FRANCE,"dd/MM/YYYY");
+    
     public void saveClients(Groupe<Client> gc){
         File file = new File(RESOURCES_PATH + CLIENT_FILE_NAME);
         ArrayList<String> gs = gc.save();
@@ -201,7 +201,7 @@ public class DAO {
             
             while(str != null){
                 strSplit = str.split(SEPARATOR);
-                l.add(new Adherent(strSplit[0], strSplit[1], strSplit[2], new Date(Integer.parseInt(strSplit[3])), new Date(Integer.parseInt(strSplit[4])), new SecteurGeographique(strSplit[5])));
+                l.add(new Adherent(strSplit[0], strSplit[1], strSplit[2], format.fromString(strSplit[3]), format.fromString(strSplit[4]), new SecteurGeographique(strSplit[5]),Activité.get(strSplit[6])));
                 str = br.readLine();
             }
             
@@ -236,7 +236,7 @@ public class DAO {
             
             while(str != null){
                 strSplit = str.split(SEPARATOR);
-                l.add(new Intervention(gc.getPersonne(strSplit[0]), ga.getPersonne(strSplit[1]), new Date(Integer.parseInt(strSplit[2])),new Date(Integer.parseInt(strSplit[3])), new SecteurGeographique(strSplit[4]), Activité.valueOf(strSplit[5]), Integer.parseInt(strSplit[6]), strSplit[7]));
+                l.add(new Intervention(gc.getPersonne(strSplit[0]), ga.getPersonne(strSplit[1]), format.fromString(strSplit[2]),format.fromString(strSplit[3]), new SecteurGeographique(strSplit[4]), Activité.valueOf(strSplit[5]), Integer.parseInt(strSplit[6]), strSplit[7]));
                 str = br.readLine();
             }
             
@@ -272,7 +272,7 @@ public class DAO {
             
             while(str != null){
                 strSplit = str.split(SEPARATOR);
-                l.add(new Demande(gc.getPersonne(strSplit[0]), Integer.parseInt(strSplit[1]), Integer.parseInt(strSplit[2]), strSplit[3]));
+                l.add(new Demande(gc.getPersonne(strSplit[0]), format.fromString(strSplit[1]) ,Integer.parseInt(strSplit[2]), Integer.parseInt(strSplit[3]), strSplit[4]));
                 str = br.readLine();
             }
             

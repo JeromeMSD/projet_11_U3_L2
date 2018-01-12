@@ -98,6 +98,10 @@ public class MainWindowController implements Initializable {
     
     // <editor-fold defaultstate="collapsed" desc="Intervention List FXML">
     @FXML
+    private VBox vboxDemL;
+    @FXML
+    private ListView demandeL;
+    @FXML
     private ListView interventionsList;
     @FXML
     private Button rmInter;
@@ -204,6 +208,7 @@ public class MainWindowController implements Initializable {
         flowSec.setVisible(false);
         flowTarif.setVisible(false);
         
+        vboxDemL.setVisible(false);
         interventionsList.setVisible(false);
         nInter.setVisible(false);
         rmInter.setVisible(false);
@@ -262,7 +267,7 @@ public class MainWindowController implements Initializable {
         if(ls.isSelected() == false)
             ls.selectedProperty().set(true);
         subtitle.setText("Liste intervention");
-       
+        vboxDemL.setVisible(true);
         interventionsList.setVisible(true);
         nInter.setVisible(true);
         rmInter.setVisible(true);
@@ -300,20 +305,16 @@ public class MainWindowController implements Initializable {
     
     public void validBtn() throws IOException{
         groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", new SecteurGeographique("100-Les Velux")));
-        groupeAdherent.addToGroupe(new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000),new SecteurGeographique("100-Les Velux")));
+        groupeAdherent.addToGroupe(new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000),new SecteurGeographique("100-Les Velux"),Activité.Electricité));
         if(ra.isSelected()){
             //Validation registre d'appel
-            ;
+            ajouterDemande();
         }else if(cs.isSelected()){
             ajouterAdherent();
         }
-        
-        
-        ///Validation et affectation automatique
-        
     }
-    public void resetBtn(){
-        Intervention i = new Intervention(new Client("l", "b", "dqsdqsd", "dqd", new SecteurGeographique("100-Les Velux")), new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000),new SecteurGeographique("100-Les Velux")),new Date(10000), new Date(10000), new SecteurGeographique(63000,"Clermont"), enumActivite, Integer.SIZE, "Tpue");
+    public void resetBtn() throws Exception{
+        Intervention i = new Intervention(groupeClient.getFirst(), groupeAdherent.getFirst(),new Date(10000), new Date(10000), new SecteurGeographique(63000,"Clermont"), enumActivite, Integer.SIZE, "Tpue");
         title.setText("ADHER Service");
         groupeInter.addToGroupe(i);
         
@@ -369,7 +370,7 @@ public class MainWindowController implements Initializable {
         DatePicker dp = new DatePicker(dateDebut.getValue());
         Date d = new Date (dp.getValue().toEpochDay());
         SecteurGeographique s = new SecteurGeographique(cdeVille.getText() + "-" + ville.getText());
-        Adherent e = new Adherent( nom.getText(), "", numRue.getText()+" "+NomVoie.getText(), d, null, s);
+        Adherent e = new Adherent( nom.getText(), "", numRue.getText()+" "+NomVoie.getText(), d, d, s,Activité.Jardinage);
         groupeAdherent.addToGroupe(e);
         listeSecteurGeographique.add(s.toString());
         refresh();
@@ -421,19 +422,19 @@ public class MainWindowController implements Initializable {
     
     
     public void ajouterDemande(){
-        
-        Client a = (Client)clientA.getValue();
-        int h = (int)hours.getValue();
-        int m = (int)minutes.getValue();
-        Demande dem = new Demande(a, h, m, demande.getText());
-        groupeDem.addToGroupe(dem);
-        
+        if(clientA.equals("----------")){
+            Client a = (Client)clientA.getValue();
+            int h = (int)hours.getValue();
+            int m = (int)minutes.getValue();
+            Demande dem = new Demande(a, new Date(),h, m, demande.getText());
+            groupeDem.addToGroupe(dem);
+        }
     }
     
-    public void supprimerDemande(){
-        
-
-        
+    public void supprimerDemande() throws Exception{
+        String demande_s = (String) demandeL.getSelectionModel().getSelectedItem();
+        groupeDem.removeFromGroupe(groupeDem.getPersonne(demande_s));
+        refresh();
     }
     
     /**
@@ -441,7 +442,7 @@ public class MainWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //load();
+        load();
         cleanScreen();
         showRegistreAppel();
         
@@ -458,6 +459,7 @@ public class MainWindowController implements Initializable {
         clientL.setItems(FXCollections.observableArrayList(groupeClient.getStringList()));
         adherentL.setItems(FXCollections.observableArrayList(groupeAdherent.getStringList()));
         interventionsList.setItems(FXCollections.observableArrayList(groupeInter.getStringList()));
+        demandeL.setItems(FXCollections.observableArrayList(groupeDem.getStringList()));
     }
 
     void save() {

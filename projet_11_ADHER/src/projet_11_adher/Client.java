@@ -23,6 +23,6 @@ public class Client extends Personne{
   
     @Override
     public String toSave(){
-        return super.toSave()+";"+this.getNumTel()+";"+getLibRue()+";"+getSecteurGeographique()+";";
+        return super.toSave()+";"+this.getNumTel()+";"+getSecteurGeographique()+";";
     }
 }

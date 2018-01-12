@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 <GridPane id="interGrid" prefHeight="400" prefWidth="600" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" >
-        <stylesheets>
+    <stylesheets>
         <URL value="@/css/MainCss.css"/>
     </stylesheets>
        <columnConstraints>
@@ -51,7 +51,7 @@
         <!-- Client existant -->
         <FlowPane fx:id="exist" orientation="HORIZONTAL" GridPane.columnSpan="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <Label text="Client : " />
-            <ChoiceBox fx:id="client" prefWidth="225" />
+            <ChoiceBox fx:id="client" prefWidth="225" onAction="#clientC" />
         </FlowPane>
         
         
@@ -69,7 +69,7 @@
         <HBox GridPane.rowIndex="5" GridPane.columnSpan="5" GridPane.columnIndex="1" spacing="30">
             <VBox >
                 <Label text="Secteur :" />
-                <ChoiceBox fx:id="sec" prefWidth="125"/>
+                <TextField fx:id="sec" prefWidth="125" editable="false"/>
             </VBox>
             <VBox >
                 <Label text="Activité :" />
