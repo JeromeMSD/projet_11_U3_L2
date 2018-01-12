@@ -236,7 +236,7 @@ public class DAO {
             
             while(str != null){
                 strSplit = str.split(SEPARATOR);
-                l.add(new Intervention(gc.getPersonne(strSplit[0]), ga.getPersonne(strSplit[1]), format.fromString(strSplit[2]),format.fromString(strSplit[3]), new SecteurGeographique(strSplit[4]), Activité.valueOf(strSplit[5]), Integer.parseInt(strSplit[6]), strSplit[7]));
+                l.add(new Intervention(gc.getPersonne(strSplit[0]), ga.getPersonne(strSplit[1]), format.fromString(strSplit[2]),format.fromString(strSplit[3]), new SecteurGeographique(strSplit[4]), Activité.valueOf(strSplit[5]), Integer.parseInt(strSplit[6]) ));
                 str = br.readLine();
             }
             

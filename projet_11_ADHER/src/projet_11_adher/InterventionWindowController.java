@@ -7,6 +7,7 @@ package projet_11_adher;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /**
  * FXML Controller class
@@ -51,6 +53,7 @@ public class InterventionWindowController implements Initializable {
     @FXML
     private ChoiceBox act;
   
+    private final SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
     private Groupe<Intervention> gi = new Groupe<>("Intervention");
     private Groupe<Client> gc = new Groupe<>("Client");
     private Groupe<Adherent> ga = new Groupe<>("Adherent");
@@ -91,27 +94,25 @@ public class InterventionWindowController implements Initializable {
     }
     
     public void validBtn() throws Exception{
-        Date debut;
-        Date fin;
-        Client c;
-        Adherent a;/*
+        Date debut = null;
+        Date fin = null;
+        Client c = null;
+        Adherent a = null;
         // Si un client a été selectionner
-            // Si Un adherent à été selectionner
-                //Si secteur et activité selecttionner
-                    // Si la date de début des antérieur ou egal a la date de fin
-                    debut = dateDeb.get;
-                    fin = 
-                    if( < ) {
-                        //Ajouter l'intervention au registre
-                        c = gc.getPersonne((String) client.getSelectionModel().getSelectedItem());
-                        a = ga.getPersonne((String) adherent.getSelectionModel().getSelectedItem());
-                        gi.addToGroupe(new Intervention(, adherent, dateDebut, dateFin, secteur, Activité.Electricité, Integer.SIZE, nonSelectionne));*/
-                        stage = (Stage) valid.getScene().getWindow();
-                        stage.close();
-                    //}
-                    // Sinon probleme concordance date
-        // sinon probleme de champs vide
-        
+            if(!client.getSelectionModel().getSelectedItem().equals("----------"))
+                c = gc.getPersonne((String) client.getSelectionModel().getSelectedItem());
+                // Si Un adherent à été selectionner
+                if(!adherent.getSelectionModel().getSelectedItem().equals("----------"))
+                    a = ga.getPersonne((String) adherent.getSelectionModel().getSelectedItem());
+                    if(dateDeb.getChronology() != null && dateFin.getChronology() != null)
+                        debut = new Date(dateDeb.getValue().toEpochDay());
+                        fin = new Date(dateFin.getValue().toEpochDay());
+                        if(debut.before(fin)) {
+                            //Ajouter l'intervention au registre
+                            gi.addToGroupe(new Intervention(c, a, debut, fin, new SecteurGeographique(sec.getText()), (Activité) act.getSelectionModel().getSelectedItem()));
+                            stage = (Stage) valid.getScene().getWindow();
+                            stage.close();
+                        }
     }
     
     public void resetBtn(){
@@ -119,8 +120,13 @@ public class InterventionWindowController implements Initializable {
     }
     
     public void clientC() throws Exception{
-        Client c = gc.getPersonne((String) client.getSelectionModel().getSelectedItem());
-        sec.setText(c.getSecteurGeographique().toString());
+        try{
+            Client c = gc.getPersonne((String) client.getSelectionModel().getSelectedItem());
+            sec.setText(c.getSecteurGeographique().toString());
+        }catch (NotFound n){
+            ;
+        }
+         
     }
     
     /**
@@ -132,7 +138,7 @@ public class InterventionWindowController implements Initializable {
         refresh();
         client.getSelectionModel().selectFirst();
         adherent.getSelectionModel().selectFirst();
-        
+        act.setItems(FXCollections.observableArrayList(Activité.values()));
         
         // TODO
     }    

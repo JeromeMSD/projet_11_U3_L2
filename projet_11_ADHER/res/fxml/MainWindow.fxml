@@ -191,7 +191,7 @@
             <ListView  fx:id="demandeL" />
             <Button onAction="#supprimerDemande" styleClass="btn" >Supprimer la demande</Button>      
         </VBox>
-        <VBox GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="6" GridPane.rowSpan="3">
+        <VBox fx:id="vboxIntC" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="6" GridPane.rowSpan="3">
             <Label text="liste des interventions en cours :"/>
             <ListView  fx:id="interventionsList"  />
         </VBox>

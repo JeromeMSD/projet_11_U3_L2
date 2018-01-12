@@ -100,6 +100,8 @@ public class MainWindowController implements Initializable {
     @FXML
     private VBox vboxDemL;
     @FXML
+    private VBox vboxIntC;
+    @FXML
     private ListView demandeL;
     @FXML
     private ListView interventionsList;
@@ -219,6 +221,7 @@ public class MainWindowController implements Initializable {
         vboxCl.setVisible(false);
         
         vboxAFCL.setVisible(false);
+        vboxIntC.setVisible(false);
         
         reset.setVisible(false);
         valid.setVisible(false);
@@ -268,6 +271,7 @@ public class MainWindowController implements Initializable {
             ls.selectedProperty().set(true);
         subtitle.setText("Liste intervention");
         vboxDemL.setVisible(true);
+        vboxIntC.setVisible(true);
         interventionsList.setVisible(true);
         nInter.setVisible(true);
         rmInter.setVisible(true);
@@ -314,9 +318,6 @@ public class MainWindowController implements Initializable {
         }
     }
     public void resetBtn() throws Exception{
-        Intervention i = new Intervention(groupeClient.getFirst(), groupeAdherent.getFirst(),new Date(10000), new Date(10000), new SecteurGeographique(63000,"Clermont"), enumActivite, Integer.SIZE, "Tpue");
-        title.setText("ADHER Service");
-        groupeInter.addToGroupe(i);
         
         refresh();
     }

@@ -14,33 +14,44 @@ import java.util.Date;
  */
 public class Intervention extends ObjectE{
     private final SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+    private static int genID = 0;
     private Client client;
     private Adherent adherent;
     private Date dateDebut;
     private Date dateFin;
     private SecteurGeographique secteur;
     private Activité activité;
-    private Integer num;
-    private String typeInteger;
+    private Integer num = 0;
  
-    public Intervention(Client client, Adherent adherent, Date dateDebut, Date dateFin, SecteurGeographique secteur, Activité activité, Integer Num, String Type){
+    public Intervention(Client client, Adherent adherent, Date dateDebut, Date dateFin, SecteurGeographique secteur, Activité activité){
         this.client=client;
         this.adherent=adherent;
         this.dateDebut = dateDebut;
         this.dateFin=dateFin;
         this.secteur=secteur;
         this.activité=activité;
-        this.num=Num;
-        this.typeInteger=Type;
+        genID=genID+1;
+        this.num = genID;
+    }
+
+    public Intervention(Client client, Adherent adherent, Date dateDebut, Date dateFin, SecteurGeographique secteur, Activité activité, int num) {
+        this.client=client;
+        this.adherent=adherent;
+        this.dateDebut = dateDebut;
+        this.dateFin=dateFin;
+        this.secteur=secteur;
+        this.activité=activité;
+        genID=genID+1;
+        this.num = num;
     }
     
     @Override
     public String toString(){
-        return client.toString()+" -> "+adherent.toString()+"|"+format.format(dateDebut)+"|"+format.format(dateFin)+"|";
+        return client.toString()+" -> "+adherent.toString()+" ( "+format.format(dateDebut)+" -> "+format.format(dateFin)+" )";
     }
     
     @Override
     public String toSave(){
-        return  client.toString() + ";" + adherent.toString() +";" + format.format(dateDebut) +";" + format.format(dateFin) +";"+ secteur + ";" + activité + ";" + num + ";" + typeInteger + ";";
+        return  client.toString() + ";" + adherent.toString() +";" + format.format(dateDebut) +";" + format.format(dateFin) +";"+ secteur + ";" + activité + ";" + num + ";";
     }
 }
