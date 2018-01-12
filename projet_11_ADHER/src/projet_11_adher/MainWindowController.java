@@ -7,6 +7,7 @@ package projet_11_adher;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -138,7 +139,12 @@ public class MainWindowController implements Initializable {
     @FXML
     private RadioButton nc;
     
-    
+    @FXML
+    private VBox vboxAFCL;
+    @FXML
+    private ListView adherentFCL;
+    @FXML
+    private Button ok;
     
     
     
@@ -203,6 +209,8 @@ public class MainWindowController implements Initializable {
         vboxSec.setVisible(false);
         vboxAl.setVisible(false);
         vboxCl.setVisible(false);
+        
+        vboxAFCL.setVisible(false);
         
         reset.setVisible(false);
         valid.setVisible(false);
@@ -285,7 +293,6 @@ public class MainWindowController implements Initializable {
     
     private ObservableList<String> listeActivites = FXCollections.observableArrayList();
     private ObservableList<String> listeSecteurGeographique = FXCollections.observableArrayList();
-    private ObservableList<Adherent> listeAdherent = FXCollections.observableArrayList();
 
     
     public void validBtn() throws IOException{
@@ -295,8 +302,7 @@ public class MainWindowController implements Initializable {
             //Validation registre d'appel
             ;
         }else if(cs.isSelected()){
-            //validation contrat de service
-            ;
+            ajouterAdherent();
         }
         
         
@@ -332,7 +338,7 @@ public class MainWindowController implements Initializable {
     }
     
     
-    public void newClient() throws IOException{
+    public void ajouterClient() throws IOException{
         NewClientFXMLController nCC = new NewClientFXMLController(groupeClient);
         
         FXMLLoader fl = new FXMLLoader(getClass().getResource("/fxml/NewClientFXML.fxml"));
@@ -349,6 +355,12 @@ public class MainWindowController implements Initializable {
         refresh();
     }
     
+    public void supprimerClient() throws Exception{
+        String client_s = (String) clientL.getSelectionModel().getSelectedItem();
+        groupeClient.removeFromGroupe(groupeClient.getPersonne(client_s));
+        refresh();
+    }
+
 
     public void ajouterAdherent(){
         DatePicker dp = new DatePicker(dateDebut.getValue());
@@ -356,15 +368,14 @@ public class MainWindowController implements Initializable {
         SecteurGeographique s = new SecteurGeographique(cdeVille.getText() + "-" + ville.getText());
         Adherent e = new Adherent( nom.getText(), "", numRue.getText()+" "+NomVoie.getText(), d, null, s);
         groupeAdherent.addToGroupe(e);
-        listeAdherent.add(e);
         listeSecteurGeographique.add(s.toString());
+        refresh();
     }
 
-    public void supprimerAdherent(Adherent x) {
-        
-        groupeAdherent.removeFromGroupe(x);
-        listeAdherent.remove(x);
-        System.out.println("coucou");
+    public void supprimerAdherent() throws Exception {
+        String adherent_s = (String) adherentL.getSelectionModel().getSelectedItem();
+        groupeAdherent.removeFromGroupe(groupeAdherent.getPersonne(adherent_s));
+        refresh();
     }
     
     public void resetAdherent(){
@@ -382,32 +393,29 @@ public class MainWindowController implements Initializable {
         tarifHT.setText(value);
         tarifTTC.setText(value);
     }
-
-    public void ajouteAdherent(Adherent x) {
-        groupeAdherent.addToGroupe(x);
-        listeAdherent.add(x);
-    }
     
     public void renouvellementAdherent() {
-       
-        for(int i = 0; i<listeAdherent.size(); i++)
-            if(listeAdherent.get(i).getDateSortie().compareTo(new Date()) < 0)
-                System.out.println(listeAdherent.get(i).getNom()+ " " +listeAdherent.get(i).getPrenom()+" : fin de contrat");;
+        ArrayList<Adherent> l = groupeAdherent.getList();
+        ArrayList<Adherent> afc = new ArrayList<>();
+        
+        for( Adherent a : l)
+            if(a.getDateSortie().compareTo(new Date()) < 0) {
+                System.out.println(a.toString()+" : fin de contrat");
+                afc.add(a);
+            }
+        
+        if(!afc.isEmpty()){
+            cleanScreen();
+            vboxAFCL.setVisible(true);
+            adherentFCL.setItems(FXCollections.observableArrayList(afc));
+        }
     }
     
-    public void supprimeAppel() {
-        ;
+    public void ok(){
+        cleanScreen();
+        showRegistreAppel();
     }
-    public void ajouterAppel() {
-        ;
-    }
-
     
-    
-    public void supprimerClient(){
-        System.out.println("coucou");
-    }
-
     
     /**
      * Initializes the controller class.

@@ -38,6 +38,9 @@ public class Groupe <E extends ObjectE> {
         return l;
     }
     
+    ArrayList<E> getList() {
+        return groupe;
+    }
     public E getPersonne(String s) throws Exception{
         for(E e: groupe)
             if(s.equals(e.toString()))
@@ -81,5 +84,6 @@ public class Groupe <E extends ObjectE> {
             ls.add(e.toSave());
         return ls;
     }
+
 
 }

@@ -90,7 +90,7 @@
         <FlowPane fx:id="flowClient" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" >
             <Label text="Nom Client:" />
             <ChoiceBox fx:id="clientA" prefWidth="125"   />
-            <Button onAction="#newClient" styleClass="btn" >+</Button>
+            <Button onAction="#ajouterClient" styleClass="btn" >+</Button>
         </FlowPane>
         
         <FlowPane fx:id="flowTelC" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4">
@@ -213,6 +213,13 @@
             <Button onAction="#supprimerAdherent" styleClass="btn"  >Supprimer l'adherent</Button>            
         </VBox>
         
+        
+        <!-- Liste des Adherent en fin de contrat  -->
+        <VBox fx:id="vboxAFCL" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="3" GridPane.rowSpan="8">
+            <Label text="Liste des Adherent dont le contrat est fini : "/>
+            <ListView  fx:id="adherentFCL" />
+            <Button onAction="#ok" styleClass="btn"  >OK</Button>    
+        </VBox>
         
         <Button onAction="#resetBtn" fx:id="reset" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Reset</Button>
         <Button onAction="#validBtn" fx:id="valid" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="9" maxWidth="99999" maxHeight="30" styleClass="btn" >Validation</Button>
