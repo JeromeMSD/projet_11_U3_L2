@@ -18,9 +18,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
@@ -136,6 +138,42 @@ public class MainWindowController implements Initializable {
     @FXML
     private RadioButton nc;
     
+    
+    
+    
+    
+    
+    @FXML
+    private TextField nom;
+    @FXML
+    private TextField numRue;  
+    @FXML
+    private TextField NomVoie;
+    @FXML
+    private TextField cdeVille; 
+    @FXML
+    private TextField ville; 
+    @FXML
+    private TextField sec;
+    @FXML
+    private TextField tel; 
+    @FXML
+    private TextField nomResp;
+    @FXML
+    private TextField tarifHT;
+    @FXML
+    private TextField tarifTTC;
+    @FXML
+    private DatePicker dateDebut;
+
+
+    
+    
+    
+    
+    
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Affichage composant FXML">
     public void cleanScreen(){
         subtitle.setText("");
@@ -247,7 +285,8 @@ public class MainWindowController implements Initializable {
     
     private ObservableList<String> listeActivites = FXCollections.observableArrayList();
     private ObservableList<String> listeSecteurGeographique = FXCollections.observableArrayList();
-    
+    private ObservableList<Adherent> listeAdherent = FXCollections.observableArrayList();
+
     
     public void validBtn() throws IOException{
         groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", new SecteurGeographique("100-Les Velux")));
@@ -310,29 +349,66 @@ public class MainWindowController implements Initializable {
         refresh();
     }
     
-    void ajouterAdherent(){
-        ;
+
+    public void ajouterAdherent(){
+        DatePicker dp = new DatePicker(dateDebut.getValue());
+        Date d = new Date (dp.getValue().toEpochDay());
+        SecteurGeographique s = new SecteurGeographique(cdeVille.getText() + "-" + ville.getText());
+        Adherent e = new Adherent( nom.getText(), "", numRue.getText()+" "+NomVoie.getText(), d, null, s);
+        groupeAdherent.addToGroupe(e);
+        listeAdherent.add(e);
+        listeSecteurGeographique.add(s.toString());
     }
-    
-    public void supprimerAdherent() {
+
+    public void supprimerAdherent(Adherent x) {
+        
+        groupeAdherent.removeFromGroupe(x);
+        listeAdherent.remove(x);
         System.out.println("coucou");
     }
-    void ajouteAdherent(Adherent x) {
+    
+    public void resetAdherent(){
+        /// remise a zero des champs interface
+        String value = "";
+        nom.setText(value);
+        numRue.setText(value);
+        NomVoie.setText(value);
+        cdeVille.setText(value);
+        ville.setText(value);
+        nomResp.setText(value);
+        tel.setText(value);
+        sec.setText(value);
+        dateDebut.setAccessibleText(value);
+        tarifHT.setText(value);
+        tarifTTC.setText(value);
+    }
+
+    public void ajouteAdherent(Adherent x) {
+        groupeAdherent.addToGroupe(x);
+        listeAdherent.add(x);
+    }
+    
+    public void renouvellementAdherent() {
+       
+        for(int i = 0; i<listeAdherent.size(); i++)
+            if(listeAdherent.get(i).getDateSortie().compareTo(new Date()) < 0)
+                System.out.println(listeAdherent.get(i).getNom()+ " " +listeAdherent.get(i).getPrenom()+" : fin de contrat");;
+    }
+    
+    public void supprimeAppel() {
         ;
     }
-    void renouvellementAdherent() {
+    public void ajouterAppel() {
         ;
     }
+
+    
+    
     public void supprimerClient(){
         System.out.println("coucou");
     }
+
     
-    void supprimeAppel() {
-        ;
-    }
-    void ajouterAppel() {
-        ;
-    }
     /**
      * Initializes the controller class.
      */

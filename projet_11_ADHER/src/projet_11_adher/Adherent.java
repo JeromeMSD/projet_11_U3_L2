@@ -34,5 +34,18 @@ public class Adherent extends Personne {
     public String toSave(){
         return super.toSave()+";"+dateEntree + ";" + dateSortie + ";" + disponibilite + ";" +activité + ";";
     }
+    
+    @Override
+    public String toString(){
+        return this.getNom() + this.getPrenom();
+    }
+
+    public Date getDateSortie() {
+        return dateSortie;
+    }
+
+    public void setDateSortie(Date dateSortie) {
+        this.dateSortie = dateSortie;
+    }
 }
 
