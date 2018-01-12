@@ -23,6 +23,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
@@ -172,12 +174,13 @@ public class MainWindowController implements Initializable {
     @FXML
     private DatePicker dateDebut;
 
-
-    
-    
-    
-    
-    
+          
+    @FXML
+    private Spinner hours;
+    @FXML
+    private Spinner minutes;
+    @FXML
+    private TextArea demande;
     
     
     // <editor-fold defaultstate="collapsed" desc="Affichage composant FXML">
@@ -416,6 +419,22 @@ public class MainWindowController implements Initializable {
         showRegistreAppel();
     }
     
+    
+    public void ajouterDemande(){
+        
+        Client a = (Client)clientA.getValue();
+        int h = (int)hours.getValue();
+        int m = (int)minutes.getValue();
+        Demande dem = new Demande(a, h, m, demande.getText());
+        groupeDem.addToGroupe(dem);
+        
+    }
+    
+    public void supprimerDemande(){
+        
+
+        
+    }
     
     /**
      * Initializes the controller class.
