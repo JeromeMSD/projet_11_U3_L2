@@ -6,6 +6,7 @@
 package projet_11_adher;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -22,6 +23,7 @@ public class Adherent extends Personne {
     
     public Adherent(String nom,String prenom, String adresse, Date dateEntree, Date dateSortie, SecteurGeographique s, Activité activité){
         super(nom, prenom, adresse, s);
+        
         this.dateEntree = dateEntree;
         this.dateSortie = dateSortie;
         this.disponibilite = true;
@@ -32,6 +34,7 @@ public class Adherent extends Personne {
     public Boolean estDisponnible(){
         return disponibilite;
     }
+    
     
     @Override
     public String toSave(){

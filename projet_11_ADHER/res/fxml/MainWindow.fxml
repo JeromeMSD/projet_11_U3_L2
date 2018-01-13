@@ -65,12 +65,8 @@
         
         <Label fx:id="subtitle" styleClass="subtitle" text="Registre d'appel" GridPane.columnIndex="0" GridPane.columnSpan="10" GridPane.rowIndex="2" GridPane.halignment="CENTER" />
         <!-- Registre Appel -->
-        <FlowPane fx:id="flowDate" orientation="HORIZONTAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="3">
-            <Label text="Date :" />
-            <DatePicker fx:id="datepicker" prefWidth="200" />
-        </FlowPane>
         
-        <FlowPane fx:id="flowH" orientation="HORIZONTAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="4">
+        <FlowPane fx:id="flowH" orientation="HORIZONTAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="3">
             <Label text="Heure :" />
             <FlowPane>
                 <Spinner fx:id="hours" editable="true" prefWidth="75">
@@ -89,16 +85,16 @@
         
         <FlowPane fx:id="flowClient" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" >
             <Label text="Nom Client:" />
-            <ChoiceBox fx:id="clientA" prefWidth="125"  />
+            <ChoiceBox fx:id="clientA" prefWidth="125" />
             <Button onAction="#ajouterClient" styleClass="btn" >+</Button>
         </FlowPane>
         
         <FlowPane fx:id="flowTelC" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4">
             <Label text="Téléphone Client:" />
-            <TextField maxWidth="$col.prefWidth" />
+            <TextField maxWidth="$col.prefWidth" fx:id="telCli" />
         </FlowPane>
         
-        <FlowPane fx:id="flowHr" orientation="HORIZONTAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="TOP" >
+        <FlowPane fx:id="flowHr" orientation="HORIZONTAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="TOP" >
             <Label text="Heure rappel :" />
             <FlowPane>
                 <Spinner fx:id="hoursr" editable="true" prefWidth="75">
@@ -171,7 +167,7 @@
         </FlowPane>
         <FlowPane fx:id="flowSec" orientation="VERTICAL" GridPane.columnIndex="6" GridPane.rowIndex="5" GridPane.columnSpan="9" GridPane.rowSpan="3" GridPane.valignment="CENTER">
             <Label text="Activite :" />
-            <TextField fx:id="sec" editable="true" />
+            <ChoiceBox fx:id="actCb" prefWidth="175" />
         </FlowPane>
         <FlowPane fx:id="flowDateDebut" orientation="VERTICAL" GridPane.columnIndex="6" GridPane.rowIndex="6" GridPane.columnSpan="4"  GridPane.valignment="CENTER">
             <Label text="Date Début :" />

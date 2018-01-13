@@ -7,6 +7,7 @@ package projet_11_adher;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -32,6 +34,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 
 /**
@@ -61,8 +64,6 @@ public class MainWindowController implements Initializable {
     @FXML
     private ChoiceBox clientA;
     @FXML
-    private FlowPane flowDate;
-    @FXML
     private FlowPane flowH;
     @FXML
     private FlowPane flowClient;
@@ -78,6 +79,11 @@ public class MainWindowController implements Initializable {
     private FlowPane flowAc;
     @FXML
     private Label res;
+    @FXML
+    private TextField telCli;
+    @FXML
+    private DatePicker datepicker;
+    
 // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Contrat Service FXML">
@@ -153,10 +159,7 @@ public class MainWindowController implements Initializable {
     private ListView adherentFCL;
     @FXML
     private Button ok;
-    
-    
-    
-    
+
     @FXML
     private TextField nom;
     @FXML
@@ -168,7 +171,7 @@ public class MainWindowController implements Initializable {
     @FXML
     private TextField ville; 
     @FXML
-    private TextField sec;
+    private ChoiceBox actCb;
     @FXML
     private TextField tel; 
     @FXML
@@ -192,7 +195,6 @@ public class MainWindowController implements Initializable {
     // <editor-fold defaultstate="collapsed" desc="Affichage composant FXML">
     public void cleanScreen(){
         subtitle.setText("");
-        flowDate.setVisible(false);
         flowH.setVisible(false);
     
         flowClient.setVisible(false);
@@ -235,7 +237,6 @@ public class MainWindowController implements Initializable {
             ra.selectedProperty().set(true);
         cleanScreen();
         subtitle.setText("Registre d'appel");
-        flowDate.setVisible(true);
         flowH.setVisible(true);
         flowClient.setVisible(true);
         flowTelC.setVisible(true);
@@ -307,7 +308,7 @@ public class MainWindowController implements Initializable {
     private ObservableList<String> listeSecteurGeographique = FXCollections.observableArrayList();
 
     
-    public void validBtn() throws IOException{
+    public void validBtn() throws Exception{
         groupeClient.addToGroupe(new Client("Michel","Le brezil", "0202020202", "rue des fenetres", new SecteurGeographique("100-Les Velux")));
         groupeAdherent.addToGroupe(new Adherent("bob", "le bricoleur", "rue des clou", new Date(1000), new Date(1000),new SecteurGeographique("100-Les Velux"),Activité.Electricité));
         if(ra.isSelected()){
@@ -318,14 +319,17 @@ public class MainWindowController implements Initializable {
         }
     }
     public void resetBtn() throws Exception{
-        
+        if(ra.isSelected()){
+            clientA.getSelectionModel().select(0);
+            hours.getValueFactory().setValue(12);
+            minutes.getValueFactory().setValue(30);
+        }else if(cs.isSelected()){
+            resetAdherent();
+        }
         refresh();
     }
+
     
-    public void rmIntervention(){
-       String s = (String) interventionsList.getSelectionModel().getSelectedItem();
-       groupeInter.rm(s);
-    }
     
     public void newIntervention() throws IOException{
         Stage stage = new Stage();
@@ -342,6 +346,11 @@ public class MainWindowController implements Initializable {
         stage.show();
     }
     
+    public void rmIntervention(){
+       String s = (String) interventionsList.getSelectionModel().getSelectedItem();
+       groupeInter.rm(s);
+       refresh();
+    }
     
     public void ajouterClient() throws IOException{
         NewClientFXMLController nCC = new NewClientFXMLController(groupeClient);
@@ -371,7 +380,7 @@ public class MainWindowController implements Initializable {
         DatePicker dp = new DatePicker(dateDebut.getValue());
         Date d = new Date (dp.getValue().toEpochDay());
         SecteurGeographique s = new SecteurGeographique(cdeVille.getText() + "-" + ville.getText());
-        Adherent e = new Adherent( nom.getText(), "", numRue.getText()+" "+NomVoie.getText(), d, d, s,Activité.Jardinage);
+        Adherent e = new Adherent( nom.getText(), nomResp.getText(), numRue.getText()+" "+NomVoie.getText(), d, d, s,(Activité) actCb.getSelectionModel().getSelectedItem());
         groupeAdherent.addToGroupe(e);
         listeSecteurGeographique.add(s.toString());
         refresh();
@@ -393,7 +402,7 @@ public class MainWindowController implements Initializable {
         ville.setText(value);
         nomResp.setText(value);
         tel.setText(value);
-        sec.setText(value);
+        actCb.getSelectionModel().select(0);
         dateDebut.setAccessibleText(value);
         tarifHT.setText(value);
         tarifTTC.setText(value);
@@ -421,15 +430,15 @@ public class MainWindowController implements Initializable {
         showRegistreAppel();
     }
     
-    
-    public void ajouterDemande(){
-        if(clientA.equals("----------")){
-            Client a = (Client)clientA.getValue();
+    public void ajouterDemande() throws Exception{
+        if(!clientA.equals("----------") && clientA.getSelectionModel().getSelectedItem() != null && clientA.getSelectionModel().getSelectedIndex() != 0){
+            Client a = groupeClient.getPersonne(clientA.getSelectionModel().getSelectedItem().toString());
             int h = (int)hours.getValue();
             int m = (int)minutes.getValue();
             Demande dem = new Demande(a, new Date(),h, m, demande.getText());
             groupeDem.addToGroupe(dem);
         }
+        refresh();
     }
     
     public void supprimerDemande() throws Exception{
@@ -451,6 +460,7 @@ public class MainWindowController implements Initializable {
         activityList.setItems(listeActivites);
         
         refresh();
+        renouvellementAdherent();
         clientA.getSelectionModel().selectFirst();
     }    
     
@@ -461,6 +471,8 @@ public class MainWindowController implements Initializable {
         adherentL.setItems(FXCollections.observableArrayList(groupeAdherent.getStringList()));
         interventionsList.setItems(FXCollections.observableArrayList(groupeInter.getStringList()));
         demandeL.setItems(FXCollections.observableArrayList(groupeDem.getStringList()));
+        actCb.setItems(FXCollections.observableArrayList(Activité.values()));
+        secGeoList.setItems(FXCollections.observableArrayList(groupeAdherent.getSecteurs()));
     }
 
     void save() {

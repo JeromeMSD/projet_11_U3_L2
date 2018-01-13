@@ -14,6 +14,10 @@ class ObjectE {
         return false;
     }
     
+    public String getSecteurGeographique(){
+        return "Pas de secteur geographique";
+    }
+    
     public String toSave(){
         return "String";
     }

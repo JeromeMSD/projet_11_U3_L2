@@ -33,6 +33,7 @@ public class Personne extends ObjectE{
         return libRue;
     }
     
+    @Override
     public String getSecteurGeographique(){
         return secteur.toString();
     }

@@ -82,6 +82,17 @@ public class Groupe <E extends ObjectE> {
         return l;
     }
     
+    public ArrayList<String> getSecteurs(){
+        ArrayList<String> l = new ArrayList<>();
+        String s = null;
+        for(E e : groupe){
+            s = e.getSecteurGeographique();
+            if(!l.contains(s))
+                l.add(e.getSecteurGeographique());
+        }
+        return l;
+    }
+    
     public ArrayList<String> save(){
         ArrayList<String> ls = new ArrayList<>();
         
