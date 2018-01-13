@@ -336,7 +336,9 @@ public class MainWindowController implements Initializable {
         Scene scene = new Scene(root, 400, 600);
         stage.setTitle("ADHER Service - Nouvelle Intervention");
         stage.setScene(scene);
-        stage.show();
+        stage.showAndWait();
+        refresh();
+        
     }
     
     public void rmIntervention(){
