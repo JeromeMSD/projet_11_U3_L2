@@ -201,17 +201,13 @@ public class MainWindowController implements Initializable {
         flowClient.setVisible(false);
         flowTelC.setVisible(false);
         flowHr.setVisible(false);
-        flowAt.setVisible(false);
-        flowAc.setVisible(false);
         flowDem.setVisible(false);
-        res.setVisible(false);
         
         flowDateDebut.setVisible(false);
         flowNomRais.setVisible(false);
         flowAddr.setVisible(false);
         flowResp.setVisible(false);
         flowSec.setVisible(false);
-        flowTarif.setVisible(false);
         
         vboxDemL.setVisible(false);
         interventionsList.setVisible(false);
@@ -242,10 +238,7 @@ public class MainWindowController implements Initializable {
         flowClient.setVisible(true);
         flowTelC.setVisible(true);
         flowHr.setVisible(true);
-        flowAt.setVisible(true);
-        flowAc.setVisible(true);
         flowDem.setVisible(true);
-        res.setVisible(true);
         reset.setVisible(true);
         valid.setVisible(true);
     }
@@ -265,7 +258,6 @@ public class MainWindowController implements Initializable {
         flowAddr.setVisible(true);
         flowResp.setVisible(true);
         flowSec.setVisible(true);
-        flowTarif.setVisible(true);
     } 
     public void showListeInterventions(){
         cleanScreen();
