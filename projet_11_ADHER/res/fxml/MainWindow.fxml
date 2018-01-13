@@ -8,6 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
+<?import fxml.other.*?>
 
 <GridPane id="MainGrid" prefHeight="800" prefWidth="700" xmlns:fx="http://javafx.com/fxml/1" styleClass="root"  >
     <stylesheets>
@@ -91,7 +92,7 @@
         
         <FlowPane fx:id="flowTelC" orientation="HORIZONTAL" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4">
             <Label text="Téléphone Client:" />
-            <TextField maxWidth="$col.prefWidth" fx:id="telCli" />
+            <NumberField maxWidth="$col.prefWidth" fx:id="telCli" />
         </FlowPane>
         
         <FlowPane fx:id="flowHr" orientation="HORIZONTAL" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="TOP" >
@@ -155,7 +156,7 @@
             <Label text="Nom de la voie :" />
             <TextField fx:id="NomVoie" editable="true" prefWidth="300" />
             <Label text="Code Postal :" />
-            <TextField fx:id="cdeVille" editable="true"  maxWidth="75" />
+            <NumberField fx:id="cdeVille" editable="true"  maxWidth="75" />
             <Label text="Nom de la ville :" />
             <TextField fx:id="ville" editable="true" prefWidth="300" />
         </FlowPane>
@@ -163,7 +164,7 @@
             <Label text="Nom du responsable :" />
             <TextField fx:id="nomResp" editable="true" />
             <Label text="Téléphone :" />
-            <TextField fx:id="tel" editable="true" />
+            <NumberField fx:id="tel" editable="true" />
         </FlowPane>
         <FlowPane fx:id="flowSec" orientation="VERTICAL" GridPane.columnIndex="6" GridPane.rowIndex="5" GridPane.columnSpan="9" GridPane.rowSpan="3" GridPane.valignment="CENTER">
             <Label text="Activite :" />
