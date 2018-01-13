@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -378,9 +379,14 @@ public class MainWindowController implements Initializable {
 
     public void ajouterAdherent(){
         DatePicker dp = new DatePicker(dateDebut.getValue());
-        Date d = new Date (dp.getValue().toEpochDay());
+        Date dd = new Date();
+        Date df = new Date();
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.YEAR, 1);
+        df = c.getTime();
+        
         SecteurGeographique s = new SecteurGeographique(cdeVille.getText() + "-" + ville.getText());
-        Adherent e = new Adherent( nom.getText(), nomResp.getText(), numRue.getText()+" "+NomVoie.getText(), d, d, s,(Activité) actCb.getSelectionModel().getSelectedItem());
+        Adherent e = new Adherent( nom.getText(), nomResp.getText(), numRue.getText()+" "+NomVoie.getText(), dd, df, s,(Activité) actCb.getSelectionModel().getSelectedItem());
         groupeAdherent.addToGroupe(e);
         listeSecteurGeographique.add(s.toString());
         refresh();

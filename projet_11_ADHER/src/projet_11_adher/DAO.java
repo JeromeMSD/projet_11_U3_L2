@@ -22,7 +22,7 @@ import javafx.util.converter.DateTimeStringConverter;
  * @author jmddu_000
  */
 public class DAO {
-    private final static String RESOURCES_PATH= "res/save/";
+    private final static String RESOURCES_PATH= "res/save/";                     // Emplacement initial des sauvegarde, à du être changer pour permettre la persistence fichier apres le deploiement sous la forme application
     private final static String SEPARATOR = ";";
     private final static String CLIENT_FILE_NAME = "clients.txt";
     private final static String ADHERENT_FILE_NAME = "adherents.txt";
@@ -31,7 +31,7 @@ public class DAO {
     private DateTimeStringConverter format = new DateTimeStringConverter(Locale.FRANCE,"dd/MM/YYYY");
     
     public void saveClients(Groupe<Client> gc){
-        File file = new File(RESOURCES_PATH + CLIENT_FILE_NAME);
+        File file = new File(  CLIENT_FILE_NAME);
         ArrayList<String> gs = gc.save();
         FileWriter fw  = null;
         BufferedWriter bw = null;
@@ -60,7 +60,7 @@ public class DAO {
     }
 
     public void saveAdherents(Groupe<Adherent> ga) {
-        File file = new File(RESOURCES_PATH + ADHERENT_FILE_NAME);
+        File file = new File(  ADHERENT_FILE_NAME);
         ArrayList<String> gs = ga.save();
         FileWriter fw  = null;
         BufferedWriter bw = null;
@@ -89,7 +89,7 @@ public class DAO {
     }
 
     public void saveInterventions(Groupe<Intervention> gi) {
-        File file = new File(RESOURCES_PATH + INTERVENTION_FILE_NAME);
+        File file = new File(  INTERVENTION_FILE_NAME);
         ArrayList<String> gs = gi.save();
         FileWriter fw  = null;
         BufferedWriter bw = null;
@@ -117,7 +117,7 @@ public class DAO {
         }
     }
     public void saveDemandes(Groupe<Demande> gd) {
-        File file = new File(RESOURCES_PATH + DEMANDE_FILE_NAME);
+        File file = new File(  DEMANDE_FILE_NAME);
         ArrayList<String> gs = gd.save();
         FileWriter fw  = null;
         BufferedWriter bw = null;
@@ -154,7 +154,7 @@ public class DAO {
     
     public ArrayList<Client> loadClients() {
         ArrayList<Client> l = new ArrayList<>();
-        File file = new File(RESOURCES_PATH + CLIENT_FILE_NAME);
+        File file = new File(  CLIENT_FILE_NAME);
         FileReader fr = null;
         BufferedReader br = null;
         
@@ -189,7 +189,7 @@ public class DAO {
 
     public ArrayList<Adherent> loadAdherents() {
         ArrayList<Adherent> l = new ArrayList<>();
-        File file = new File(RESOURCES_PATH + ADHERENT_FILE_NAME);
+        File file = new File(  ADHERENT_FILE_NAME);
         FileReader fr = null;
         BufferedReader br = null;
         
@@ -224,7 +224,7 @@ public class DAO {
 
     public ArrayList<Intervention> loadInterventions(Groupe<Client> gc, Groupe<Adherent> ga) {
         ArrayList<Intervention> l = new ArrayList<>();
-        File file = new File(RESOURCES_PATH + INTERVENTION_FILE_NAME);
+        File file = new File(  INTERVENTION_FILE_NAME);
         FileReader fr = null;
         BufferedReader br = null;
         
@@ -260,7 +260,7 @@ public class DAO {
     }
     public ArrayList<Demande> loadDemandes(Groupe<Client> gc) {
         ArrayList<Demande> l = new ArrayList<>();
-        File file = new File(RESOURCES_PATH + DEMANDE_FILE_NAME);
+        File file = new File(  DEMANDE_FILE_NAME);
         FileReader fr = null;
         BufferedReader br = null;
         
